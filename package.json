@@ -82,17 +82,17 @@
     "tether": "^1.4.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "0.802.2",
-    "@angular/cli": "8.2.2",
-    "@angular/common": "^7.2.15",
-    "@angular/compiler": "^7.2.15",
-    "@angular/compiler-cli": "8.2.2",
-    "@angular/core": "^7.2.15",
-    "@angular/forms": "^7.2.15",
-    "@angular/language-service": "8.2.2",
-    "@angular/platform-browser": "^7.2.15",
-    "@angular/platform-browser-dynamic": "^7.2.15",
-    "@angular/router": "^7.2.15",
+    "@angular-devkit/build-angular": "0.803.20",
+    "@angular/cli": "8.3.20",
+    "@angular/common": "^8.2.14",
+    "@angular/compiler": "^8.2.14",
+    "@angular/compiler-cli": "8.2.14",
+    "@angular/core": "^8.2.14",
+    "@angular/forms": "^8.2.14",
+    "@angular/language-service": "8.2.14",
+    "@angular/platform-browser": "^8.2.14",
+    "@angular/platform-browser-dynamic": "^8.2.14",
+    "@angular/router": "^8.2.14",
     "@ngx-translate/core": "11.0.1",
     "@ngx-translate/http-loader": "4.0.0",
     "@types/chart.js": "^2.7.42",
@@ -126,7 +126,7 @@
     "typescript": "3.5.3",
     "wait-on": "3.3.0",
     "webdriver-manager": "12.1.5",
-    "zone.js": "^0.8.29"
+    "zone.js": "^0.9.1"
   },
   "engines": {
     "node": ">=10.9.0"
