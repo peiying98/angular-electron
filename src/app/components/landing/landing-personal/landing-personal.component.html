@@ -1,0 +1,410 @@
+<!-- Last updated: 20/08/2018 by See Ting  -->
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> -->
+<!-- <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
+
+<!-- <link rel="stylesheet" href="/src/assets/fonts/avenir/AvenirLTStd-Black.otf">
+<link rel="stylesheet" href="/src/assets/fonts/avenir/AvenirLTStd-Book.otf">
+<link rel="stylesheet" href="/src/assets/fonts/avenir/AvenirLTStd-Roman.otf"> -->
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Avenir" crossorigin="anonymous"> -->
+
+<div class="fade-in toolkit" id="toolkit-signin">
+    <!-- Navbar -->
+    <div class="topnav" id="myTopnav">
+        <div class="d-md-flex navbar-container justify-content-between flex-md-equal">
+            <a class="navbar-bulb" (click)="scrollDown('toolkit-signin')">
+                <img id="blue-banner" src="/assets/images/Pitchspot Banner 050418.png" height="20" alt="Pitchspot">
+                <img id="white-banner" src="/assets/images/Pitchspot-white.png" height="25" alt="Pitchspot">
+            </a>
+
+            <ul class=" navbar-nav ">
+
+                <!-- <li class="nav-item active ">
+                    <a class="nav-title " href="# ">Home</a>
+                </li> -->
+                <!-- <li class="nav-item dropdown ">
+                    <a id="dropdown " class="nav-title dropdown-toggle " href="# ">
+                              Solutions
+                            </a>
+                    <div id="dropdown-content " class="dropdown-content ">
+                        <a class="dropdown-item " href="/login ">Toolkit</a>
+                        <a class="dropdown-item " href="https://community.pitchspot.co ">Community</a>
+                        <a class="dropdown-item " href="https://pitchspot.co/enterprise ">Hack</a>
+                    </div>
+                </li> -->
+                <li class="nav-item ">
+                    <a class="nav-title " href="javascript:void(0); " (click)="scrollDown('summary') ">Why Pitchspot?</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-title " href="javascript:void(0); " (click)="scrollDown('features') ">Features</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-title " href="/enterprise">Enterprise</a>
+                </li>
+                <!-- <li class="nav-item ">
+                    <a class="nav-title " target="_blank" href="https://medium.com/pitchspot ">Blog</a>
+                </li> -->
+            </ul>
+            <!-- <a class="header-text-style header-text-style:hover " href="/about " target="_blank ">About</a>
+                <a class="header-text-style header-text-style:hover " href="https://medium.com/@pitchspot " target="_blank ">Medium</a> -->
+
+            <div class="nav-align ">
+                <a class="getstarted-btn " href="/login ">Log In</a>
+                <!-- <a class="mobile-resp-login ">
+                    <form [formGroup]="loginForm ">
+                        <span class="d-md-flex ">
+                        <input class="login-input-field " placeholder="Email " formControlName="loginEmail " />
+                        <input id="login-pw " class="login-input-field " placeholder="Password " formControlName="loginPassword " type="password " (keyup.enter)="login() " />
+                        <div id="login-btn " class="login-btn " (click)=" login() ">Login</div>
+                        <div id="forgetPassword " class="forget-btn " (click)="forgetPassword() ">Reset</div>
+                    </span>
+                    </form>
+                    <div id="showforgetPassword " class="forgetpw-text-style header-text-style:hover ">Forgot Password?</div>
+                    <div id="showloginPassword " class="forgetpw-text-style header-text-style:hover ">Back to Login</div>
+                </a> -->
+            </div>
+        </div>
+        <a href="javascript:void(0); " class="icon " id="hamburger-toggle">
+            <i class="fa fa-bars " id="fafabars"></i>
+            <i class="fa fa-times " id="fafatimes"></i>
+        </a>
+    </div>
+    <!-- Body -->
+    <div class="test-bg ">
+        <div class="hero-text ">
+            <div class="hero-header px-3 ">
+                <b>INNOVATE BETTER WITH US</b>
+            </div>
+            <p class="section-2 px-3 container ">
+                <br>Realise the potential of your ideas with market validation tools and resources.</p>
+        </div>
+        <div class="space-button ">
+            <a class="blue-button blue-button:hover " target="_blank " href="/login ">Get Started</a>
+        </div>
+
+        <div class="arrow-down">
+
+            <i class="fa fa-angle-double-down arrow-bounce" (click)="scrollDown('summary') "></i>
+        </div>
+    </div>
+
+    <!-- <img src="/assets/images/generic-graphic.png " class="hero-graphic " (click)="scrollDown() "/> -->
+</div>
+<!-- <div class="content-section d-md-flex flex-md-equal justify-content-center pl-md-3 ">
+            <div class="d-flex col mobile-resp ">
+                <div class="left-box ">
+
+                </div>
+            </div>
+            <div class="col mobile-hide ">
+                <div class="right-box ">
+
+                </div>
+            </div>
+        </div> -->
+<!-- <div class="arrow-down ">
+            <i class="fa fa-angle-double-down arrow-bounce " (click)="scrollDown() "></i>
+        </div> -->
+
+
+
+<div id="summary">
+
+    <div class="box-4 ">
+        <div class="container header-3 px-3">
+            <b class="txt-yellow">IDEATE. VALIDATE. ACCELERATE.</b>
+        </div>
+        <div class="container d-md-flex flex-md-equal w-100 pl-md-3 ">
+
+            <div class="align-mid ">
+                <div class="d-flex justify-content-center ">
+                    <img alt="Gain-Pain Ratio Canvas " class="product " src="/assets/images/Kickstart.svg ">
+
+                </div>
+            </div>
+
+
+            <div class="px-5 text-center overflow-hidden align-mid ">
+                <div class="my-3 py-3 ">
+
+                    <div class="sub-header-3 "><b>KICKSTART YOUR IDEA WITH CLARITY</b></div>
+                    <div class="section-3-text px-2 ">Structure your idea with the <i>Business Model Canvas</i> framework. Visualise and test business models with concrete evidence and results from customer discovery.
+                        <a href="https://medium.com/pitchspot/the-business-model-canvas-explained-1f5b76207f7f" target="_blank">Learn more</a> about the <i>Business Model Canvas</i>.
+                        <!-- <div class="learnmore ">
+                            <a class="lm-community lm-community:hover " target="_blank " href="/login ">
+                                Learn More</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-4 ">
+        <div class="container d-md-flex flex-md-equal w-100 pl-md-3 flex-reverse ">
+
+            <div class="align-mid ">
+                <div class="d-flex justify-content-center ">
+                    <img alt="Gain-Pain Ratio Canvas " class="product " src="/assets/images/Streamline.svg ">
+
+                </div>
+            </div>
+
+
+            <div class="px-5 text-center overflow-hidden align-mid ">
+                <div class="my-3 py-3 ">
+
+                    <div class="sub-header-3 "><b>STREAMLINE YOUR VALIDATION PROCESS</b></div>
+                    <div class="section-3-text px-2 ">Generate insights about your business model through a systematic, rigorous validation process. Establish logical links between your research and ideas. Record and catalogue interviews easily while testing for product-market fit.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-4 ">
+        <div class="container d-md-flex flex-md-equal w-100 pl-md-3 ">
+
+            <div class="align-mid ">
+                <div class="d-flex justify-content-center ">
+                    <img alt="Gain-Pain Ratio Canvas " class="product " src="/assets/images/Propel.svg ">
+
+                </div>
+            </div>
+
+
+            <div class="px-5 text-center overflow-hidden align-mid ">
+                <div class="my-3 py-3 ">
+
+                    <div class="sub-header-3 "><b>PROPEL IDEAS BEYOND INDIVIDUAL LIMITS</b></div>
+                    <div class="section-3-text px-2 ">
+                        Collaborate with team members on shared canvases. Seek out collaborators and/or new hires from thousands of like-minded innovators within our global network to accelerate your venture creation.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-3 " id="features">
+        <div class="container header-3 px-3">
+            <b class="txt-yellow">WE'VE GOT YOUR NEEDS COVERED</b>
+        </div>
+        <p class="section-2 px-5 container ">
+            The world's smartest innovation platform.
+            <br>From ideation to community building - the possibilities are endless with Pitchspot.</p>
+        <div class="container d-md-flex flex-md-equal w-100 pl-md-3 my-md-3 ">
+
+            <div class="mr-md-3 pt-3 px-3 pt-md-5 text-center overflow-hidden ">
+                <div class="my-3 py-3 ">
+                    <img src="/assets/images/BMC.svg " class="icon ">
+                    <div class="sub-header-3 "><b>IDEA CANVAS</b></div>
+                    <div class="section-3-text px-2 ">Structure, analyse, and validate your idea on our dynamic <i>Business Model Canvas</i>.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mr-md-3 pt-3 px-3 pt-md-5 text-center overflow-hidden ">
+                <div class="my-3 py-3 ">
+                    <img src="/assets/images/Newsfeed.svg " class="icon ">
+                    <div class="sub-header-3 "><b>AI NEWSFEED</b></div>
+                    <div class="section-3-text px-2 ">Equip yourself with relevant, curated news updates through our proprietary algorithm.
+                        <!-- <div class="learnmore ">
+                                <a class="lm-community lm-community:hover " href="javascript:void(0); " (click)="scrollDown( 'one') ">
+                                    Learn More</a>
+                            </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="mr-md-3 pt-3 px-3 pt-md-5 text-center overflow-hidden ">
+                <div class="my-3 py-3 ">
+                    <img src="/assets/images/GPR.svg " class="icon ">
+                    <div class="sub-header-3 "><b>GAIN-PAIN RATIO</b></div>
+                    <div class="section-3-text px-2 ">Receive quantifiable feedback and optimise pitch delivery through our language-based analysis.
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="mr-md-3 pt-3 px-3 pt-md-5 text-center overflow-hidden ">
+                <div class="my-3 py-3 ">
+                    <img src="/assets/images/Collaboration.svg " class="icon ">
+                    <div class="sub-header-3 "><b>COLLABORATION</b></div>
+                    <div class="section-3-text px-2 ">Tap into our extensive network of innovators with our collaboration features.
+                        <!-- help you to work with others 
+                        focus on the ideas that matter to get up and started. -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="box-5 ">
+        <div class="container header-6 px-3 "><b> LET'S CHANGE THE WORLD</b></div>
+        <p class="section-6 px-5 container ">
+            Get started with Pitchspot's revolutionary innovation platform!
+        </p>
+        <div class="business-button py-5 ">
+
+            <a class="blue-button blue-button:hover " target="_blank " href="/login">Start Now</a>
+
+        </div>
+    </div>
+
+    <div class="box-3 ">
+        <div class="container header-4 px-5 ">
+            <b class="txt-yellow">HIT THE RIGHT SPOT WITH US</b>
+        </div>
+        <p class="section-2 px-5 ">Thousands of people worldwide have already made Pitchspot their preferred innovation platform.</p>
+        <div class="container px-md-5 text-center overflow-hidden ">
+            <a target="_blank " href="https://www.singaporeair.com/en_UK/us/media-centre/press-release/article/?q=en_UK/2018/January-March/ne0318-180129"><img src="/assets/images/sia.png " class="logo "></a>
+            <a target="_blank " href="https://www.easyship.com/ "><img src="/assets/images/easyshipcolour.png " class="logo "></a>
+            <a target="_blank " href="http://www.startup-o.com/ "><img src="/assets/images/startup-o.png " class="logo "></a>
+            <a target="_blank " href="https://www.kinerjabisa.com/"><img src="/assets/images/bisa.png " class="logo "></a>
+            <a target="_blank " href="http://enterprise.nus.edu.sg/ "><img src="/assets/images/nusenterprisecolour.png " class="logo "></a>
+            <a target="_blank " href="https://iie.smu.edu.sg/ "><img src="/assets/images/smucolour.png " class="logo "></a>
+            <a target="_blank " href="http://www.ntuitive.sg/ "><img src="/assets/images/ntu_logocolour.png " class="logo "></a>
+            <a target="_blank " href="https://www.psb-academy.edu.sg"><img src="/assets/images/psb.png " class="logo "></a>
+            <a target="_blank " href="https://bacecamp.ace.org.sg/"><img src="/assets/images/acelogo.png " class="logo "></a>
+        </div>
+    </div>
+
+    <div class="box-7 ">
+        <div class="container header-6 px-3 "><b>PITCHSPOT ENTERPRISE</b></div>
+        <p class="section-6 px-5 container ">
+            Looking to build an innovation ecosystem for your organisation?
+        </p>
+        <div class="business-button py-5 ">
+
+            <a class="white-button white-button:hover " target="_blank " href="/enterprise">Learn More</a>
+
+        </div>
+    </div>
+
+
+    <div class="arrow-up ">
+        <i class="fa fa-angle-double-up arrow-bounce " (click)="scrollUp() "></i>
+    </div>
+
+    <div class="container container-s5 footer-font">
+        <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3 ">
+            <div class="pt-3 px-3 pt-md-4 px-md-5 text-center overflow-hidden ">
+                <div class="padding ">
+                    <img src="/assets/images/lightbulb-logo.png " class="light-bulb " title="Pitchspot " (click)="scrollUp() ">
+                </div>
+            </div>
+            <div class="pt-md-4 px-md-5 text-center overflow-hidden ">
+                <div class="py-2 ">
+                    <div class="header-5 "><b>GET COFFEE WITH US</b></div>
+                    <p>
+                        <div class="section-5-text ">
+                            <a class="link link:hover " target="_blank " href="mailto:hello@pitchspot.co ">hello@pitchspot.co</a>
+                            <br>
+                            <p class="address">
+                                The Hangar at NUS Enterprise, <br/> 21 Heng Mui Keng Terrace, Singapore 119613</p>
+                        </div>
+                        <ul class="d-md-flex justify-content-start flex-md-equal cluster ">
+                            <li>
+                                <a target="_blank " href="https://www.facebook.com/pitchspot "><img src="/assets/images/facebook-grey.png " class="social-media-logo social-media-logo:hover "></a>
+                            </li>
+                            <li>
+                                <a target="_blank " href="https://instagram.com/teampitchspot/ "><img src="/assets/images/instagram-grey.png " class="social-media-logo social-media-logo:hover "></a>
+                            </li>
+                            <li>
+                                <a target="_blank " href="https://www.linkedin.com/company/pitchspot "><img src="/assets/images/linkedin-grey.png " class="social-media-logo social-media-logo:hover "></a>
+                            </li>
+                            <li>
+                                <a target="_blank " href="https://www.medium.com/pitchspot "><img src="/assets/images/medium-grey.png " class="social-media-logo social-media-logo:hover "></a>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+            <div class="pt-md-4 px-md-5 text-center overflow-hidden ">
+                <div class="py-2 ">
+                    <div class="header-5 "><b>COMPANY</b></div>
+                    <p>
+                        <div class="section-5-text ">
+                            <a class="link link:hover" target="_blank" href="/">For Innovators</a>
+                            <br>
+                            <a class="link link:hover" target="_blank" href="/enterprise">For Enterprises</a>
+                            <br>
+                            <a class="link link:hover" target="_blank" href="https://www.facebook.com/pitchspot/posts/769402283421789">Recent Updates</a>
+                            <br>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer ">© Pitchspot 2019</div>
+    </div>
+
+    <!-- ecosystem as a serivce business page coded below -->
+
+    <!--  <div class="box-3 ">
+          <div class="vertical-line-2 "></div>
+          <div class="container header-3 px-3 ">SOLUTION FOR ORGANISERS</div>
+          <p class="section-2 px-5 container ">Innovation challenges and hackathons: Manage your participants' data easily and reach a wider audience with the
+              <a class="link link:hover " target="_blank " href="pitchspot.co/enterprise ">Pitchspot Ecosystem-as-a-Service.</a></p>
+          <div class="container d-md-flex flex-md-equal w-100 my-md-3 pl-md-3 ">
+              <div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden ">
+                  <div class="my-3 py-3 ">
+                      <img src="/assets/images/simple management11264b.png " class="icon ">
+                      <div class="sub-header-3 ">SIMPLE MANAGEMENT</div>
+                      <div class="section-3-text px-2 ">Manage your innovation challenge with our platform and suite of services.</div>
+                  </div>
+              </div>
+              <div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden ">
+                  <div class="my-3 py-3 ">
+                      <img src="/assets/images/exposure11264b.png " class="icon ">
+                      <div class="sub-header-3 ">EXTENSIVE EXPOSURE</div>
+                      <div class="section-3-text px-2 ">We cover everything from registration, operations and logistics, to marketing.</div>
+                  </div>
+              </div>
+              <div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden ">
+                  <div class="my-3 py-3 ">
+                      <img src="/assets/images/analytics11264b.png " class="icon ">
+                      <div class="sub-header-3 ">DATA ANALYTICS</div>
+                      <div class="section-3-text px-2 ">Our database provides insights to you and your organisation.</div>
+                  </div>
+              </div>
+          </div>
+        <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3 ">
+          <div class="mr-md-3 pt-1 px-3 px-md-5 text-center overflow-hidden ">
+            <div class="my-3 py-4 ">
+              <a class="button button:hover " target="_blank " href="https://pitchspot.co/enterprise ">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      -->
+
+    <!--this here below states use cases-->
+
+    <!--
+    <div class="box-4 ">
+        <div class="container header-4 px-5 ">HIT THE RIGHT SPOT WITH US</div>
+        <p class="section-2 px-5 ">Thousands of people around the world have already made Pitchspot their ideas management platform.</p>
+        <div class="container px-md-5 text-center overflow-hidden ">
+            <a target="_blank " href="https://www.easyship.com/ "><img src="/assets/images/easyshipcolour.png " class="logo "></a>
+            <a target="_blank " href="http://www.startup-o.com/ "><img src="/assets/images/startup-o.png " class="logo "></a>
+            <a target="_blank " href="http://enterprise.nus.edu.sg/ "><img src="/assets/images/nusenterprisecolour.png " class="logo "></a>
+            <a target="_blank " href="https://iie.smu.edu.sg/ "><img src="/assets/images/smucolour.png " class="logo "></a>
+            <a target="_blank " href="http://www.ntuitive.sg/ "><img src="/assets/images/ntu_logocolour.png " class="logo "></a>
+            <a target="_blank " href="https://www.iss.nus.edu.sg/ "><img src="/assets/images/nusisscolour.png " class="logo "></a>
+            <a target="_blank " href="https://expertconnect.asia/ "><img src="/assets/images/expertconnect.png " class="logo "></a>
+            <a target="_blank " href="http://csplus.io "><img src="/assets/images/CS -Logo-600p.png " class="logo "></a>
+        </div>
+    </div>
+-->
+
+    <!--additional links-->
+
+    <!--<a class="link link:hover " target="_blank " href="http://enterprise.nus.edu.sg/educate/summer-programme ">NUS Enterprise Summer Programme</a>
+<br>
+<a class="link link:hover " target="_blank " href="http://enterprise.nus.edu.sg/educate/nus-overseas-colleges ">NUS Overseas Colleges Programme</a>
+<br>
+<a class="link link:hover " target="_blank " href="https://www.hackathon.com/ ">Hackathons</a>
+<br>
+<a class="link link:hover " target="_blank " href="https://www.hackathon.com/ ">Innovation Challenges</a>-->

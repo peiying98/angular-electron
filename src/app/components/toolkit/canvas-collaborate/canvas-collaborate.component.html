@@ -1,0 +1,21 @@
+<div class="margin">
+    <div class="title"><i class="fa fa-envelope" aria-hidden="true"></i> User Email</div>
+    <form [formGroup]="collaborateForm">
+        <div class="box">
+            <input type="text" pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" formControlName="collaborateEmail" name="Email" placeholder="Email Address" class="form" (keydown.enter)="addUser()" required>
+        </div>
+        <div class="collab-btn" (click)="addUser()">Share</div>
+    </form>
+    <div class="title"><i class="fa fa-user" aria-hidden="true"></i> Your Collaborators</div>
+    <div *ngIf="!this.partLen" class="empty-collab">No collaborators yet! Share your canvas with others!</div>
+    <div *ngFor="let participant of participants[1]" class="got-collab">
+        <div class="justify">
+            {{participant}}
+            <i class="fas fa-times" style="margin-top: auto;margin-bottom: auto; cursor: pointer;" (click)="rmUser(participant)"></i>
+        </div>
+
+    </div>
+</div>
+
+<!-- <div style="width:5%;margin: auto; padding: 1em 2em 1em 0em;" >
+<i class="fa fa-trash-o" style="margin-left:auto" aria-hidden="true"></i>-->

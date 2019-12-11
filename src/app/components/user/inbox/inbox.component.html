@@ -1,0 +1,121 @@
+<div *ngIf="!mobile">
+    <div class=" box fade-in" *ngIf="UserData  as user" style="min-width:1024px">
+        <div class="menu-column">
+
+
+            <!-- <div class="" [ngStyle]="{'background-image': 'url(' + user.profileImg + ')'}">&nbsp;</div> -->
+
+            <div class="edit-box">
+                <div class="user-profile">
+                    <div class="user-img" *ngIf="user.profileImg !== ''" [ngStyle]="{'background-image':  'url(' + user.profileImg + ')'}"></div>
+                    <div class="user-img" *ngIf="user.profileImg == ''" [ngStyle]="{'background-image': 'url( ../../../../../assets/images/navbar-logo-2.png)'}">&nbsp;</div>
+                    <div class="user-name"> {{user.firstName}}</div>
+                    <div class="user-nav" routerLink="/user/{{useruid}}"> View profile</div>
+                    <div class="user-nav" routerLink="/edit-profile"> Edit Profile</div>
+                </div>
+            </div>
+        </div>
+        <div class="edit-column">
+            <div class="edit-section">
+
+                <div class="edit-header">Messages</div>
+                <div class=" " *ngIf="(chatrooms)?.length==0">
+                    <div class="each-chat-box">
+                        <div class="no-chats">No existing chats available.<br/><a routerLink="/"><b>Flesh out</b></a> your ideas on the Pitchspot Toolkit and collaborate with like-minded individuals.</div>
+                    </div>
+                </div>
+                <div *ngFor="let room of chatrooms">
+                    <!-- [ngClass]="{'isRead': !room.isRead}" -->
+                    <div class="each-chat-box" [ngClass]="{'unread': !room.isRead}" (click)="RouteTo(room.chatroomID , room.user1 , room.user2)">
+                        <!-- <a routerLink="/inbox/{{room.chatroomID}}"> {{room.chatroomID}}</a> -->
+                        <div class=" message-icon-unread" *ngIf=" !room.isRead">
+
+                            <i class="fa fa-envelope-o isRead centralised" aria-hidden="true"></i>
+                        </div>
+                        <div class=" message-icon" *ngIf="room.isRead">
+
+                            <i class="fa fa-envelope-open-o " aria-hidden="true"></i>
+                        </div>
+                        <div class="chat-col-1">
+
+                            <div class="chat-user-img" *ngIf="room.PitcherPhoto == null" [ngStyle]="{'background-image': 'url( ../../../../../assets/images/navbar-logo-2.png)'}">&nbsp;</div>
+
+                        </div>
+                        <div class="chat-col-2">
+
+                            <div class="chat-username">{{room.chatwith}}</div>
+                            <!-- <div class="chat-username" *ngIf="!room.isRead">(Unread message)</div> -->
+                            <div class="chat-info"><b>Pitch: {{room.PitchName}}</b>
+                            </div>
+                        </div>
+                        <div class="chat-col-3">
+                            <div class="chat-username" *ngIf="!room.isRead">(Unread Messages)</div>
+                            <div class="chat-recent">{{room.LatestPoster}}:&nbsp;{{room.LatestChat}}</div>
+                            <div class="chat-time">{{room.timestamp | date:'short'}}</div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MOBILE!!! -->
+<div *ngIf="mobile">
+    <div class="  fade-in" *ngIf="UserData  as user">
+        <div class="menu-collumn">
+
+
+            <!-- <div class="" [ngStyle]="{'background-image': 'url(' + user.profileImg + ')'}">&nbsp;</div> -->
+
+
+        </div>
+        <div class="">
+            <div class="edit-section">
+
+                <div class="edit-header">Messages
+                </div>
+                <div class=" " *ngIf="(chatrooms)?.length==0">
+                    <div class="each-chat-box">
+                        <div class="no-chats"> No existing chats available. <br/><a routerLink="/"><b>Search</b></a> for interesting pitches and engage like minded individual now.</div>
+                    </div>
+                </div>
+                <div *ngFor="let room of chatrooms">
+                    <!-- [ngClass]="{'isRead': !room.isRead}" -->
+                    <div class="each-chat-box" [ngClass]="{'unread': !room.isRead}" (click)="RouteTo(room.chatroomID , room.user1 , room.user2)">
+                        <!-- <a routerLink="/inbox/{{room.chatroomID}}"> {{room.chatroomID}}</a> -->
+                        <div class=" message-icon-unread" *ngIf=" !room.isRead">
+
+                            <i class="fa fa-envelope-o isRead centralised" aria-hidden="true"></i>
+                        </div>
+                        <div class=" message-icon" *ngIf="room.isRead">
+
+                            <i class="fa fa-envelope-open-o " aria-hidden="true"></i>
+                        </div>
+                        <div class="chat-col-1">
+
+                            <div class="chat-user-img" *ngIf="room.PitcherPhoto == null" [ngStyle]="{'background-image': 'url( ../../../../../assets/images/navbar-logo-2.png)'}">&nbsp;</div>
+
+                        </div>
+                        <div class="chat-col-2">
+
+                            <div class="chat-username">{{room.chatwith}}</div>
+                            <!-- <div class="chat-username" *ngIf="!room.isRead">(Unread message)</div> -->
+                            <div class="chat-info"><b>Pitch: {{room.PitchName}}</b>
+                            </div>
+                        </div>
+                        <div class="chat-col-3">
+                            <div class="chat-username" *ngIf="!room.isRead">(Unread Messages)</div>
+                            <div class="chat-recent">{{room.LatestPoster}}:&nbsp;{{room.LatestChat}}</div>
+                            <div class="chat-time">{{room.timestamp | date:'short'}}</div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

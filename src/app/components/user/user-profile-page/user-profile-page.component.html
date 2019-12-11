@@ -1,0 +1,67 @@
+<body>
+<div *ngIf="userData | async as user" class="user">
+  <div class="padding">
+    <div class="block flex">
+      <div *ngIf="useruid " class="width">
+        <app-user-img [id]="useruid.id" size="10em "></app-user-img>
+      </div>
+      <div class="margin">
+        <div class="username">{{user.firstName}}</div>
+        <div class="grey">{{user.location}} · Joined on {{user.TimeStamp | date:'longDate' }}</div>
+          <div class="dark-grey">
+            <b>{{user.firstName}}'s take on the world:</b><br/>
+              <i class="fa fa-quote-left font" aria-hidden="true"></i> {{user.about}} <i class="fa fa-quote-right font" aria-hidden="true"></i>
+          </div>
+          <div class="dark-grey">
+            <b>{{user.firstName}}'s Interests:</b><br/>{{user.interest}}
+          </div>
+        </div>
+      </div>
+
+  <div class="divline"></div>
+    <div class="block">
+      <div class="flex">
+        <div class="side-column">
+          <div class="header">Pitchspot</div>
+          <div class="sub-header sub-header:hover" (click)="nav ='pitches'">Pitches</div>
+          <div class="sub-header sub-header:hover" *ngIf="currentUser.uid == user.uid" routerLink="/edit-profile">Edit Profile</div>
+<!--<div class="sub-header sub-header:hover" (click)="nav ='submissions'">Lorem Ipsum</div>-->
+        </div>
+        <div class="width600" *ngIf="nav=='pitches'">
+          <div class="line-header-main">Pitches</div>
+            <div class="pitches">
+              <div class="pitches-box" *ngIf="pitchesIsEmpty">
+                <div class="no-pitch">You currently do not have any Pitches.<br/>
+<!--<a routerLink="/pitch/post"><b>Start pitching!</b></a>-->
+                </div>
+              </div>
+              <div *ngIf="userPitches">
+                <div class="pitches-box background" *ngFor=" let userpitches of userPitches | async">
+                  <div class="pitch-metadata">
+                    <div class="pitch-pitchname">{{userpitches.PitchName | uppercase}}</div>
+                    <div class="font-size"> {{userpitches.TimeStamp | date:'longDate'}}</div>
+                    <br/>Problem Statement: {{userpitches.ProblemStatement}}<br/>
+                  </div>
+                  <div class="view-more" routerLink="/pitch/view/{{userpitches.PitchID}}" style="cursor: pointer;">View Full Pitch</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="width600" *ngIf="nav=='submissions'">
+          <div class="line-header-main">Submissions</div>
+            <div *ngIf="userPitchesSubmitted">
+              <div *ngIf="submissionIsEmpty">You do not have any submissions.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+<!--
+<div style="" *ngFor="let submission of userPitchesSubmitted | async">
+  <div *ngIf="submission">
+    <app-eachsubmission [userID]="useruid.id" [ChallengeID]="submission.ChallengeID" [PitchID]="submission.PitchID"></app-eachsubmission>
+  </div>
+</div> -->

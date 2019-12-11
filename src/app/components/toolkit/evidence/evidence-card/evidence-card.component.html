@@ -1,0 +1,150 @@
+<div class="modal-content modal-box " *ngIf="this.evidence as e">
+    <form [formGroup]="editEvidenceForm">
+
+        <div class="fireside-customised ">
+            <textarea *ngIf="this.participantsList.includes(this.userid)" id="edit-name" name="name" style=" font-size: 1.5em;margin-left: 1em;" rows='1' formControlName="interv_name" (keydown.enter)="edit(e.EvidenceID, 'name', this.name.value)" (focusout)="edit(e.EvidenceID, 'name', this.name.value)"></textarea>
+            <div class="modal-title">
+
+                <span style="display: flex;justify-content: space-between;" id="name">
+                        <h4 *ngIf="e.name">{{e.name}}</h4>
+
+                <!-- edit -->
+                <div id="edit-icon-name" class="edit-icon" *ngIf="e.typeOf!=='secondary' && this.participantsList.includes(this.userid)" (click)="openEdit(e.name,'name')">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true" ></i>
+                    </div>
+                </span>
+
+
+                <h6 *ngIf="e.typeOf==='ftf'">Face to Face Interview</h6>
+                <h6 *ngIf="e.typeOf==='video'">Video Interview</h6>
+                <h6 *ngIf="e.typeOf==='phone'">Phone Interview</h6>
+                <h6 *ngIf="e.typeOf==='survey'">Survey/Poll</h6>
+                <h4 *ngIf="e.typeOf==='secondary'">Secondary Research</h4>
+
+
+            </div>
+            <button type="button " class="close " aria-label="Close " (click)="closeModal() ">
+                    <span aria-hidden="true ">&times;</span>
+</button>
+        </div>
+        <!-- <div class="modal-body ">
+        <div class="header "></div>
+    </div> -->
+        <div class="modal-body">
+            <div style="display: flex">
+                <div class="modal-body-profile">
+                    <img class="modal-icon-center" *ngIf="e.typeOf==='ftf'" src="/assets/images/f2f.svg" width="100px" height="100px">
+                    <img class="modal-icon-center" *ngIf="e.typeOf==='video'" src="/assets/images/video.svg" width="100px" height="100px">
+                    <img class="modal-icon-center" *ngIf="e.typeOf==='phone'" src="/assets/images/phone.svg" width="100px" height="100px">
+                    <img class="modal-icon-center" *ngIf="e.typeOf==='survey'" src="/assets/images/survey.svg" width="100px" height="100px">
+                    <img class="modal-icon-center" *ngIf="e.typeOf==='secondary'" src="/assets/images/research.svg" width="100px" height="100px">
+
+                    <div style="display: flex" *ngIf="this.participantsList.includes(this.userid)">
+                        <div class="profile-text" *ngIf="e.typeOf !== 'secondary'"><b>Email:</b>
+                            <br/> <span style="display: flex;justify-content: space-between;" id="email">
+                            {{e.email}}
+                            <!-- edit -->
+                        <div id="edit-icon-email" class="edit-icon" (click)="openEdit(e.email,'email')">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </div>
+                        </span>
+                            <textarea id="edit-email" name="email" rows='1' formControlName="interv_email" (keydown.enter)="edit(e.EvidenceID, 'email', this.email.value)" (focusout)="edit(e.EvidenceID, 'email', this.email.value)"></textarea>
+                        </div>
+
+
+                    </div>
+                    <div style="display: flex" *ngIf="this.participantsList.includes(this.userid)">
+                        <div class="profile-text" *ngIf="e.typeOf !== 'secondary'"><b>Interviewed By:</b>
+                            <br/> <span style="display: flex;justify-content: space-between;" id="intervBy">
+                                {{e.intervBy}}
+                                 <!-- edit -->
+                        <div id="edit-icon-intervBy" class="edit-icon" (click)="openEdit(e.intervBy,'intervBy')">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </div>
+                        </span>
+                            <textarea id="edit-intervBy" name="intervBy" rows='1' formControlName="interv_by" (keydown.enter)="edit(e.EvidenceID, 'intervBy', this.intervBy.value)" (focusout)="edit(e.EvidenceID, 'intervBy', this.intervBy.value)"></textarea>
+                        </div>
+
+                    </div>
+                    <div style="display: flex" *ngIf="this.participantsList.includes(this.userid)">
+                        <div class="profile-text" *ngIf="e.typeOf !== 'secondary' && e.date"><b>Interview Date:</b>
+                            <br/> <span style="display: flex;justify-content: space-between;" id="date">
+                                {{e.date.day}}-{{e.date.month}}-{{e.date.year}}
+                                 <!-- edit -->
+                        <div id="edit-icon-date" class="edit-icon" (click)="d.toggle(); openEdit(e,'date')" >
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </div>
+                        </span>
+                            <input id="edit-date" name="date" formControlName="interv_date" ngbDatepicker #d="ngbDatepicker" (dateSelect)="edit(e.EvidenceID, 'date', this.date.value)" (focusout)="edit(e.EvidenceID, 'date', this.date.value)" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-body-content">
+
+                    <div class="content-text" id="keyInsights">
+                        <div class="margin-shift-left"><b>Key Insights: </b>
+                            <br/>{{e.keyInsights}}</div>
+                        <!-- edit -->
+                        <div id="edit-icon-keyInsights" class="edit-icon" (click)="openEdit(e.keyInsights,'keyInsights')" *ngIf="this.participantsList.includes(this.userid)">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+
+                    <textarea *ngIf="this.participantsList.includes(this.userid)" id="edit-keyInsights" name="keyInsights" class="edit-text" rows='3' formControlName="keyInsights" (keydown.enter)="edit(e.EvidenceID, 'keyInsights', this.keyInsights.value)" (focusout)="edit(e.EvidenceID, 'keyInsights', this.keyInsights.value)"></textarea>
+
+
+                    <div class="content-text" id="notes">
+                        <div class="margin-shift-left"><b>Notes: </b>
+                            <br/>{{e.notes}}</div>
+                        <!-- edit -->
+                        <div id="edit-icon-notes" class="edit-icon" (click)="openEdit(e.notes,'notes')" *ngIf="this.participantsList.includes(this.userid)">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+
+                    <textarea *ngIf="this.participantsList.includes(this.userid)" id="edit-notes" name="notes" class="edit-text" rows='3' formControlName="interv_notes" (keydown.enter)="edit(e.EvidenceID, 'notes', this.notes.value)" (focusout)="edit(e.EvidenceID, 'notes', this.notes.value)"></textarea>
+
+
+                    <div class="content-text" id="link" *ngIf="e.typeOf === 'secondary'">
+                        <div class="margin-shift-left hyphenate"><b>Link: </b>
+                            <br/><a href="{{e.link}}" target="_blank">{{e.link}}</a></div>
+                        <!-- edit -->
+                        <div id="edit-icon-link" class="edit-icon" (click)="openEdit(e.link,'link')" *ngIf="this.participantsList.includes(this.userid)">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+
+                    <textarea id="edit-link" name="link" class="edit-text" *ngIf="e.typeOf === 'secondary' && this.participantsList.includes(this.userid)" rows='3' formControlName="link" (keydown.enter)="edit(e.EvidenceID, 'link', this.link.value)" (focusout)="edit(e.EvidenceID, 'link', this.link.value)"></textarea>
+
+
+
+
+                </div>
+
+
+
+            </div>
+            <div class="sub-content-text">
+                <span *ngIf="e.addedBy">Added By: {{e.addedBy}}</span>
+                <br/>Created on: {{e.timeStamp | date:'short'}}
+            </div>
+
+            <div class="connect-btn" *ngIf="this.participantsList.includes(this.userid)">
+                <!-- <div *ngIf="e.typeOf === 'secondary'" (click)="delEvidence(e.EvidenceID, 'this Secondary Research') " class="del-btn ">Delete Evidence</div>
+                <div *ngIf="e.typeOf !== 'secondary'" (click)="delEvidence(e.EvidenceID, this.e.name) " class="del-btn ">Delete Evidence</div> -->
+
+                <app-link-bmc [CanvasID]="this.CanvasID " [Title]='this.Title' [UserName]="this.UserName " [EvidenceID]="e.EvidenceID " [EvidenceIS]="e.keyInsights " [IntervBy]="e.intervBy "></app-link-bmc>
+
+            </div>
+
+        </div>
+
+
+
+    </form>
+</div>

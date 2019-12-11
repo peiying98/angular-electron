@@ -1,0 +1,34 @@
+<div class="container" style=" margin: 1em 0;">
+
+    <h5 class="modal-title " *ngIf="!this.selectedVal">Click on the bar below to show evidence</h5>
+    <h5 class="modal-title " *ngIf="this.selectedVal"> <b><u>{{this.selectedVal}}</u></b> Evidence</h5>
+    <canvas id="canvas" height=50></canvas>
+
+    <div *ngIf="this.selectedVal" class="flex">
+        <div *ngFor="let evidence of evidences" style="margin-bottom: 1em;position: relative;">
+            <div class="evidence-summary">
+
+                <!-- <div style="margin-bottom: 1em; "><b>Added by: </b><br/>{{evidence.user}}</div> -->
+                <div class="hyphenate" (click)="open(evdcontent)" [ngStyle]="{'border-color': this.selectedVal === 'Confirming'? 'rgba(18, 129, 64, 0.4)'  :
+                  this.selectedVal === 'Leaning Confirming'? 'rgba(126, 194, 65, 0.4)' : 
+                  this.selectedVal === 'Neutral'? 'rgba(254, 215, 16, 0.4)' : 
+                  this.selectedVal === 'Leaning Disconfirming'? 'rgba(249, 159, 37, 0.4)' : 
+                  this.selectedVal === 'Disconfirming'? 'rgba(238, 57, 103, 0.4)' : '#fff'}"><b>Key Insights:</b><br/> {{evidence[0]}}
+                </div>
+                <div *ngIf="this.participantsList.includes(this.userid) " class="unlink" (click)="unLink(evidence[1])">
+                    <i class="fa fa-unlink"></i> unlink</div>
+            </div>
+
+
+            <ng-template #evdcontent let-c="close " let-d="dismiss ">
+
+                <app-evidence-card [CanvasID]="this.CanvasID" [Title]="this.Title" [UserName]="this.UserName" [EvidenceID]="evidence[1]" [mr]="this.mr"></app-evidence-card>
+            </ng-template>
+
+        </div>
+    </div>
+    <!-- <div *ngIf="!this.selectedVal" style="text-align: center; margin-bottom: 1em">
+        Click to expand
+    </div> -->
+
+</div>

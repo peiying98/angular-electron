@@ -1,0 +1,40 @@
+<div *ngIf="!loading">
+    <form [formGroup]="newCanvas">
+        <div class="fade-in section-box">
+            <div class="section">
+                <div class="prompt"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Idea Title 
+                </div>
+                <div class="idea-title-box">
+                    <input formControlName="title" placeholder="My idea." class="form">
+                </div>
+            </div>
+            <!-- Problem statement -->
+            <div class="section">
+                <div class="prompt"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> What problem are you solving?
+                </div>
+                <div class="problem-statement-box">
+                    <input formControlName="problemstatement" placeholder="The problem statement." class="form">
+                </div>
+            </div>
+            <!-- your goals -->
+            <div class="section">
+                <div class="prompt"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Notes 
+                </div>
+                <div class="notes-box">
+                    <input formControlName="note" placeholder="Some notes." class="form">
+                </div>
+            </div>
+            <div class="lets-start">
+                <div class="lets-start-btn" (click)=" addCanvas();">Let's Start!</div>
+            </div>
+        </div>
+    </form>
+</div>
+<div *ngIf="loading" class="loading">
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>

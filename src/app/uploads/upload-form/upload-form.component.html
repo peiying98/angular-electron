@@ -1,0 +1,19 @@
+<br/>
+<div *ngIf="currentUpload">
+    <div class="progress">
+        <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+    </div>
+
+    <div *ngIf="currentUpload?.progress != 100">Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+    </div>
+    <div *ngIf="currentUpload?.progress == 100">
+        Your profile image has been uploaded. We will update your profile soon.<br/>
+        <a routerLink="/">Return to main</a>
+    </div>
+</div>
+<label>
+       <input type="file" (change)="detectFiles($event)">
+    </label>
+<button [disabled]="!selectedFiles" (click)="uploadSingle()">
+      Upload Single
+    </button>

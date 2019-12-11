@@ -1,0 +1,2 @@
+<div *ngIf="userimg" class="user-img " [ngClass]="{border: borderBool}" [ngStyle]="{'background-image': 'url(' +userimg+ ')' , 'height':size , 'width':size} ">&nbsp;</div>
+<div *ngIf="!userimg" class="user-img " [ngClass]="{border: borderBool}" [ngStyle]="{'background-image': 'url( ../../../assets/images/navbar-logo-2.png)' ,'height':size , 'width':size}">&nbsp;</div>

@@ -1,0 +1,228 @@
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+<body>
+
+    <!-- mobile -->
+    <div *ngIf="mobile" class="mobile-burger" (click)="showNav()">
+        <div class="mobile-sub">
+            <i class="fa fa-bars" aria-hidden="true" style="color: #ffffff"></i>
+        </div>
+        <div style=" font-size: 0.7em; font-weight: bold; ">
+            <div *ngIf="navstate == ''">Home - Newsfeed</div>
+            <div *ngIf="navstate == 'overview'">Overview</div>
+            <div *ngIf="navstate == 'collaborate'">Share Canvas</div>
+            <div *ngIf="navstate == 'newcanvas'">Add New Canvas</div>
+            <div *ngIf="navstate == 'PGA'">My Canvases</div>
+            <div *ngIf="navstate == 'Notes'">Notes</div>
+        </div>
+    </div>
+
+    <div class="all-in">
+        <div class='sidenavi' id="side-nav">
+            <div style="height:2em;" (click)="updateViewfn('')">
+                <img src="/assets/images/Pitchspot-white.png" class="pitchspot-logo">
+            </div>
+
+            <div *ngIf="mobile;" class="mobile-1" (click)="showNav()"><i class="fa fa-times" aria-hidden="true"></i></div>
+            <div *ngIf="!mobile" class="mobile-2">
+                <div class="verified-tag" *ngIf='this.auth.isVerified()'>Verified</div>
+                <div class="not-verified-tag" *ngIf='!this.auth.isVerified()'>Not Verified</div>
+                <div>{{this.goodmessage}}, {{userName}}!</div>
+            </div>
+            <div class="home-btn" [ngClass]="{ 'activeHome':(navstate =='')}" [ngStyle]="{'background':tutorialStep == '2' ? '#19856a' : '' }" (click)="updateViewfn('');goToTut(3)">
+                <!--<div><i class="fa fa-home" aria-hidden="true"></i></div>-->
+                <div class="margin">Home</div>
+
+                <!-- tool tip 2-->
+                <div *ngIf="newUser && !mobile" id="tutStep2" class="mobile-3">
+                    <div class="welcome-text">{{userName | titlecase }}, welcome to your personalised Newsfeed, powered by Artificial Intelligence.</div>
+                    <div class="welcome-keywords">Add in keywords to receive all the latest updates related your areas of interest or your competitors.</div>
+                    <div class="welcome-next">Next</div>
+                </div>
+                <!-- tool tip 2-->
+            </div>
+
+
+            <!-- tool tip 3-->
+
+            <!--test community button-->
+            <!-- <a class="community-link" href="https://community.pitchspot.co" target="_blank">
+                <div class="community-btn">
+                    <div class="margin">Community</div>
+                </div>
+            </a> -->
+            <!--test community button-->
+
+            <div class="above-existing">
+                <div class="existing">My Canvases</div>
+            </div>
+            <div class="new-canvas-btn" [ngClass]="{ 'activeNav':(navstate =='newcanvas')}" [ngStyle]="{'background':tutorialStep == '3' ? '#19856a' : '' }" (click)="updateViewfn('newcanvas');goToTut(4)">
+                <!--<div><i class="fa fa-file-o" aria-hidden="true"></i></div>-->
+                <div class="margin">New Idea Canvas</div>
+
+                <!-- tool tip 3-->
+                <div *ngIf="newUser && !mobile" id="tutStep3" class="mobile-3">
+                    <div class="welcome-text">Here is your Idea Canvas.</div>
+                    <div class="font-size">Let's start by adding a new Canvas.</div>
+                    <div class="welcome-next">Next</div>
+                </div>
+            </div>
+            <div class="nav-view" id="nav-view">
+                <div *ngFor="let canvas of canvases | async; let i = index">
+                    <div *ngIf="canvas.CanvasID" class="existing-canvas-btn active">
+                        <div [attr.id]="canvas.CanvasID+'sliderDiv'" style="width:100%; display:none;">
+                            <div class="center">Slide to Delete <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <input [attr.id]="canvas.CanvasID+'slider'" type="range" min="1" max="100" value="50">
+                            </div>
+                        </div>
+
+                        <div class="canvas-btn" (click)="updateCanvasActive(canvas.CanvasID)" *ngIf=" (this.activeCanvasID === canvas.CanvasID? scrollDown(i) : canvas.CanvasID)">
+                            <div class="update-canvas">
+                                <i class="canvas-tag fa fa-file-text-o" aria-hidden="true" *ngIf='!canvas.Admin'></i>
+                                <div class="admin-tag" *ngIf='canvas.Admin'>Admin</div>
+                                <div class="canvas-title"> {{canvas.Title}}</div>
+                                <div [attr.id]="canvas.CanvasID+'sliderToggle'" class="delete-canvas">
+                                    <i class="fa fa-trash-o" style="margin-left:auto; position:absolute;" aria-hidden="true" (click)="deleteCanvas(canvas)"></i>
+                                </div>
+                                <div [attr.id]="canvas.CanvasID+'sliderExit'" class="slider-exit">
+                                    <i class="fa fa-times i-style" aria-hidden="true" (click)="hideSlider(canvas)"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div [attr.id]="canvas.CanvasID+'nav'" [ngStyle]="{'display':canvasID == canvas.CanvasID ? 'block' : 'none' }" class="canvas-box">
+                            <div class="bold">Navigation</div>
+                            <div (click)="updateViewfn('overview')" [ngClass]="{ 'activeNav':(navstate =='overview' )}" class="indiv-box">Overview</div>
+                            <span *ngIf='canvas.Admin'>
+              <div (click)="updateViewfn('collaborate')" [ngClass]="{ 'activeNav':(navstate =='collaborate')}" class="indiv-box">Share Canvas</div>
+            </span>
+                            <div (click)="updateViewfn('PGA')" [ngClass]="{ 'activeNav':(navstate =='PGA' )}" class="indiv-box">My Canvases</div>
+                            <div (click)="updateViewfn('Notes')" [ngClass]="{ 'activeNav':(navstate =='Notes' )}" class="indiv-box">Notes</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="off-btn off-btn:hover" (click)="logout()"><i class="fa fa-power-off" aria-hidden="true"></i></div>
+        </div>
+
+        <app-newsfeed [ngClass]="{ 'hider':(navstate != '' )}" class="newsfeed-section"></app-newsfeed>
+
+        <!-- New canvas -->
+        <div *ngIf="navstate=='newcanvas'" class="newCanvas-section">
+            <app-new-canvas></app-new-canvas>
+        </div>
+        <div *ngIf="canvasData | async as data" class="height">
+            <span *ngIf="this.currentUser && (data.Admin === true || data.userID === this.currentUser.uid || data.participants.includes(this.currentUser.email) || data.participantsID.includes(this.currentUser.uid)); else noPermission">
+
+            <!-- overview -->
+            <div [ngClass]="{ 'hider':(navstate != 'overview' )}" class="fade-in" class="overview-section">
+                <app-overview [CanvasID]='activeCanvasID' [userID]="this.useruid" [adminID]="data.userID" [Title]='data.Title' [ProblemStatement]='data.ProblemStatement'></app-overview>
+            </div>
+
+            <!-- PGA -->
+            <div [ngClass]="{ 'hider':(navstate != 'PGA' )}" class="PGA-section">
+                <app-bmc id="BMC" class="tabcontent default" [CanvasID]='activeCanvasID' [Title]='data.Title' [UserName]="userName"></app-bmc>
+                <app-pga id="GPR" class="tabcontent" [CanvasID]='activeCanvasID' [Title]='data.Title' [UserName]="userName"></app-pga>
+                <div style="display:flex;     flex-direction: row-reverse;">
+                    <div class="tab">
+                        <button id="BMC-tab" class="tablinks select" (click)="togglebtn(event, 'BMC')">Business Model</button>
+                        <button id="GPR-tab" class="tablinks" (click)="togglebtn(event, 'GPR')">Gain-Pain Ratio</button>
+
+                    </div>
+                    <!-- <div id="bmc-credits" class="credits">This work is licensed under the Creative Commons Attributions – Share Alike 3.0 Unported license. To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">http://creativecommons.org/licenses/by-sa/3.0/</a>                        or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.</div> -->
+
+                </div>
+            </div>
+
+            <!-- Notes -->
+            <div [ngClass]="{ 'hider':(navstate !='Notes' )}" class="notes-section">
+                <app-notes [CanvasID]='activeCanvasID'></app-notes>
+            </div>
+            <div [ngClass]="{ 'hider':(navstate !='collaborate' )}" class="competitor-section">
+                <app-canvas-collaborate [CanvasID]='activeCanvasID'></app-canvas-collaborate>
+            </div>
+        </span>
+            <ng-template #noPermission>
+                <div class="overview-section fade-in" *ngIf="this.currentUser && getOwnerName(data.userID)">
+
+                    You do not have permissions to this canvas. Please request <a href="mailto:{{this.ownerEmail}}">{{this.ownerName}}</a> for access.
+                </div>
+            </ng-template>
+
+
+        </div>
+
+    </div>
+
+    <!-- tool tip 1 -->
+    <div *ngIf="newUser && !mobile" id="tutStep1" class="tool-tip">
+        <div class="tip-text">Hi {{userName | titlecase }}, welcome to Pitchspot! Your ideation begins here!</div>
+        <div class="welcome-next" (click)="goToTut(2)">Next</div>
+    </div>
+    <!-- tool tip 1 -->
+
+    <!-- tool tip 4 -->
+    <div *ngIf="newUser && !mobile" id="tutStep4" class="mobile-3">
+        <div class="tip-text">Alright {{userName | titlecase }}, go ahead and add your idea and the problem you aim to solve.
+            <div id="closetut" class="welcome-next" (click)="goToTut(5)">Dismiss</div>
+        </div>
+    </div>
+    <!-- tool tip 4 -->
+</body>
+
+<!-- tool tip 4-->
+<!-- <div id="tutStep4" *ngIf=" false && tutorialPartTwo && !mobile" style="display: none; position: absolute; top:0; left: 20em ;background: #19856afa; padding: 2em; box-shadow: 0px 16px 25px 0px #11264b17;width: 30em;">
+    <div style=" color: white;   line-height:1.6;">
+        Here's what you can do with Pitchspot. <br/><br/>
+        <div><b>Overview:</b> <br/>The overview shows you a recap of your idea.</div>
+        <div><b>Gain-Pain Analytics:</b><br/>Pitchspot utilises Data Analytics and Machine Learning to help you gauge the success of your idea.</div>
+        <div><b>Competitive Analysis:</b><br/>Keep up-to-date with your competitors.</div>
+        <div><b>Notes:</b><br/>Jot down that million-dollar idea here.</div>
+    </div>
+    <div style="display: block; margin-left: auto; width: 8em; color:#283240; text-align: center; padding: 0.5em; border: 2px solid #283240; font-weight: bold; cursor: pointer;" (click)="goToTut(5)"> Complete</div>
+</div> -->
+<!-- tool tip 4 -->
+
+<!-- <div [ngClass]="{ 'hider':(navstate != '' )}" style="background: #283240;background-size: cover;;height: 100vh; width: 100vw;">
+    <div class="welcome-section" class="welcome-box fade-in">
+        <div class="welcome-msg" style="color: rgba(255, 255, 255, 0.80);text-align:center;font-size: 10em;font-weight: bold;">{{h}}<span id="colon">:</span>{{m}}</div>
+        <div class="welcome-msg" style="color: rgba(255, 255, 255, 0.80); font-size: 4em; font-weight: bold;text-align:center;">{{goodmessage}}{{userName | titlecase}}</div>
+        <div class="welcome-msg" style="color: rgba(255, 255, 255, 0.80); font-size: 3em; text-align:center;">What's your focus for today?</div>
+        <form [formGroup]="focusForm">
+            <input formControlName="focus" name="focusInput" style="text-align: center; outline: none; border:none; background: none; border-bottom: 3px solid white; width: 60%; margin:auto; font-size:2em; color: white;display: block" (keyup.enter)="updateFocus()"
+            /></form>
+        <div style="width: 10em; border: 3px solid white; padding: 1em;margin:auto; display: block; margin-top: 1em; color: rgba(255, 255, 255, 0.8); text-align: center; cursor: pointer;" (click)="updateFocus()">Re-Focus!</div>
+    </div>
+</div> -->
+
+<!-- <div id="chat " class=" " style=" position:fixed;right: 25; bottom: 75; font-family: 'Montserrat' ; box-shadow: 0px 0px 20px -3px rgba(0, 0, 0, 0.24); ">
+
+<div *ngIf="chatpop " (click)='closechat() '>
+    <i class="fa fa-times xbutton " aria-hidden="true "></i>
+</div>
+<div *ngIf="chatpop " style="display: flex; padding: 1em; background: #fafafa; ">
+    <div style="width: 20% ">
+        <div *ngIf="!userimg " class="user-img " [ngClass]="{border: borderBool} " [ngStyle]="{ 'background-image': 'url( ../../../assets/images/ryan.jpg)'} ">&nbsp;</div>
+    </div>
+    <div style="width:80%;margin-left:0.5em; width: 18em; ">
+        Hey I'm Ryan from Pitchspot. Let me know if you have any great feedback and feature request that will help you! :)
+    </div>
+</div>
+
+<div *ngIf="chatpop ">
+    <form [formGroup]='feedbackform' style=" display: flex; background : #ebeff2; transition-duration: 1s; ">
+        <div style="width:90%; "><textarea style="width: 100% ;background : #ebeff2 " placeholder="Write a reply. " formControlName='feedbackInput' id='feedbackInput' (keydown.enter)="sendfeedback() " (click)="extendarea() "></textarea> </div>
+        <div style="width:10%; border-radius: 0.25em;display: block; margin: auto " (click)=" sendfeedback() ">
+            <div><i class="fa fa-paper-plane-o " style="color:#666666; font-size:1.5em; text-align: center; cursor: pointer; " aria-hidden="true "></i>
+            </div>
+        </div>
+    </form>
+  </div>
+</div> -->

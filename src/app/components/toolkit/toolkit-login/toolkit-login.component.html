@@ -1,0 +1,102 @@
+<body>
+
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="d-flex justify-content-center">
+                    <div class="brand_logo_container">
+                        <img src="/assets/images/navbar-logo-2-2.png" class="brand_logo" alt="Logo">
+                    </div>
+                </div>
+                <div class="card-header">
+                    <h3 id="login-header">Log In</h3>
+                    <h3 id="signup-header">Sign Up</h3>
+                    <h3 id="reset-header">Reset</h3>
+                    <div class="d-flex justify-content-end">
+                        <span class="fb_social_icon" (click)="loginFB()"></span>
+                        <span class="g_social_icon" (click)="loginGoogle()"></span>
+                        <!-- <span><i class="fab fa-twitter-square"></i></span> -->
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="signupForm">
+                        <div id="errorMsg" class="signup_err_msg">This email is already in use.</div>
+                        <div id="retypeMsg" class="signup_err_msg">Retyped password does not match.</div>
+                        <div id="noemailMsg" class="signup_err_msg">Email not found!</div>
+                        <div id="incorrectMsg" class="signup_err_msg">Incorrect Password!</div>
+                        <div id="nouserMsg" class="signup_err_msg">No such user found.</div>
+                        <div class="input-group form-group" id="firstName">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Name" formControlName="signupName" type="text" />
+
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Email" formControlName="signupEmail" type="email">
+
+                        </div>
+                        <div class="input-group form-group" id="signuppassword">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Password" formControlName="signupPassword">
+                        </div>
+                        <div class="input-group form-group" id="resignuppassword">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Retype Password" formControlName="resignupPassword" (keyup.enter)=" signup()">
+                        </div>
+                        <div class="input-group form-group" id="loginpassword">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Password" formControlName="loginPassword" (keyup.enter)=" login()">
+                        </div>
+                        <!-- <div class="row align-items-center remember" id="rmb-checkbox">
+                            <input type="checkbox">Remember Me
+                        </div> -->
+                        <div class="form-group">
+                            <input id="signup-btn" type="submit" value="Let's Change the World!" class="btn float-right login_btn" (click)="signup()">
+                            <input id="login-btn" type="submit" value="Login" class="btn float-right login_btn" (click)="login()">
+                            <input id="forgetPassword" type="submit" value="Reset" class="btn float-right login_btn" (click)="forgetPassword()">
+
+                        </div>
+
+                    </form>
+                    <div id="tnc" class="tnc_text">By signing up, you agree to Pitchspot's
+                        <a target="_blank" href="/pdpa">
+                              Terms of Use and Privacy Policy.
+              </a>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        <span id="signupDesc">  New to Pitchspot?<a id="signupForm" href="javascript:void(0);">Sign Up</a>
+                        </span>
+                        <span id="loginDesc">  Already on Pitchspot?<a id="loginForm" href="javascript:void(0);">Log In</a>
+                        </span>
+                        <a href="javascript:void(0);"></a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+
+                        <a id="showforgetPassword" href="javascript:void(0);">Forgot your password?</a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="footer ">© Pitchspot 2019</div>
+
+
+
+
+</body>

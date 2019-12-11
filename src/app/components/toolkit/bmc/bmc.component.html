@@ -1,0 +1,616 @@
+<!-- <script src="./../../../../../node_modules/chart.js/dist/Chart.js"></script> -->
+<div class="margin fade-in">
+
+    <div class="bmc">
+        <div style="display: flex;  margin-bottom: 1em;">
+
+            <div class="bmc-title">
+
+                <i id="shareLink" class="fas fa-share-alt" style="margin-top: auto;margin-bottom: auto; cursor:pointer" (click)="copyLink()">
+                        <span class="tooltiptext" id="copyClipboard" >Copy View Link</span>
+                </i>
+                <div id="showBMC">
+                    <div *ngIf="!mobile" class="back-btn" (click)="showBMC()">
+                        <i class="fas fa-angle-left" aria-hidden="true"></i>
+                    </div>
+                    <div *ngIf="mobile" class="back-btn" (click)="showBMC()">
+                        <i class="fas fa-angle-left" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div style="margin-top: auto;margin-bottom: auto;">
+                    {{Title}}
+                </div>
+
+                <div *ngIf="this.numAnomV + this.numRegV" style="margin-top: auto;margin-bottom: auto;">{{this.numAnomV + this.numRegV}}
+                    <i class="fas fa-eye">
+                        <span class="tooltiptext" *ngIf="this.numAnomV + this.numRegV === 1">{{this.numAnomV + this.numRegV}} View</span>
+                        <span class="tooltiptext" *ngIf="this.numAnomV + this.numRegV > 1">{{this.numAnomV + this.numRegV}} Views</span>
+                </i>
+
+                </div>
+
+            </div>
+            <div *ngIf="!mobile" class="evd-btn" id="addEvidence" (click)="addEvidence()">
+                <!--<i class="fa fa-exclamation-circle" aria-hidden="true"></i>-->Evidence
+            </div>
+            <div *ngIf="mobile" class="evd-btn" id="addEvidence" (click)="addEvidence()">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Evidence
+            </div>
+
+        </div>
+        <app-evidence id="evidence" [CanvasID]="this.CanvasID" [Title]='this.Title' [UserName]="this.UserName"></app-evidence>
+        <div class="bmc-align-rows" id="bmcCanvas">
+
+            <div class="bmc-width">
+                <div class="bmc-row-1">
+                    <div class="top-bmc-box bmc-inner-col">
+                        <div class="bmc-header"><b>KEY PARTNERS ({{this.KPLength}})</b></div>
+                        <div class="bmc-bg-white-box bmc-inner-col">
+
+
+                            <div id="KP" class="overflow-y">
+
+                                <div *ngFor="let KP of KPCol" class="content-spacing">
+                                    <!-- <div class="smallfont"> Added by: <b>{{KP.addedBy}}</b></div> -->
+                                    <div [attr.id]="KP.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                        <!-- content -->
+                                        <div class="content-box" (click)="open(content, KP, KP.ID, 'KP')">{{KP.content}}</div>
+
+                                        <!-- edit -->
+                                        <div [attr.id]="'KP-edit-'+KP.ID" class="edit-icon">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="showEditForm(KP,'KP')"></i>
+                                        </div>
+
+                                        <!-- delete -->
+                                        <!-- <div [attr.id]="'KP-edit-'+KP.ID">
+                                    <i class="fa fa-cross" aria-hidden="true" (click)="delete(KP.ID,'KP')"></i>
+                                </div> -->
+
+                                    </div>
+
+
+                                    <div class="bmc-white-box-edit collapsible" [attr.id]="KP.ID + 'editform'">
+                                        <form [formGroup]="bmcForm" class="form">
+                                            <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="KP" name='KP' id="KP-form" (keydown.enter)="edit(KP.ID,'KP')" (focusout)="edit(KP.ID,'KP')"></textarea>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                                <div class="bmc-white-box-edit collapsible" id='add-KP-form'>
+                                    <form [formGroup]="bmcForm" class="form">
+                                        <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="KP" name='KP' id="KP-form" (keydown.enter)="enter('KP')"></textarea>
+                                    </form>
+                                    <div class="align-btn">
+                                        <div>
+                                            <button type="button" class="btn btn-success" style="margin-top: 0.5em;" (click)="enter('KP')">Add</button>
+                                        </div>
+                                        <div class="exit-icon">
+                                            <i class="fa fa-times" aria-hidden="true" (click)="exit('KP')"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-new" id='add-KP-btn'>
+                                <div *ngIf="!this.KPLength" (click)="inputCol('KP')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add a card</div>
+                                <div *ngIf="this.KPLength" (click)="inputCol('KP')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add another card</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-bmc-box bmc-inner-col">
+                        <div class="bmc-header"> <b>KEY ACTIVITIES ({{this.KALength}})</b></div>
+                        <div style="height: 100%; margin-bottom: 0.5em;" class="bmc-bg-white-box bmc-inner-col">
+
+
+                            <div id="KA" class="overflow-y">
+                                <div *ngFor="let KA of KACol  " class="content-spacing">
+
+                                    <div [attr.id]="KA.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                        <!-- content -->
+                                        <div class="content-box" (click)="open(content, KA, KA.ID, 'KA')">{{KA.content}}</div>
+
+                                        <!-- edit -->
+                                        <div [attr.id]="'KA-edit-'+KA.ID" class="edit-icon">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="showEditForm(KA,'KA')"></i>
+                                        </div>
+
+                                    </div>
+                                    <div class="bmc-white-box-edit collapsible" [attr.id]="KA.ID + 'editform'">
+                                        <form [formGroup]="bmcForm" class="form">
+                                            <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="KA" name='KA' id="KA-form" (keydown.enter)="edit(KA.ID,'KA')" (focusout)="edit(KA.ID,'KA')"></textarea>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                                <div class="bmc-white-box-edit collapsible" id='add-KA-form'>
+                                    <form [formGroup]="bmcForm" class="form">
+                                        <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="KA" name='KA' id="KA-form" (keydown.enter)="enter('KA')"></textarea>
+                                    </form>
+                                    <div class="align-btn">
+                                        <div>
+                                            <button type="button" class="btn btn-success" style="margin-top: 0.5em;" (click)="enter('KA')">Add</button>
+                                        </div>
+                                        <div class="exit-icon">
+                                            <i class="fa fa-times" aria-hidden="true" (click)="exit('KA')"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-new" id='add-KA-btn'>
+                                <div *ngIf="!this.KALength" (click)="inputCol('KA')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add a card</div>
+                                <div *ngIf="this.KALength" (click)="inputCol('KA')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add another card</div>
+                            </div>
+                        </div>
+                        <div class="bmc-header"> <b>KEY RESOURCES ({{this.KRLength}})</b></div>
+                        <div style="height: 100%;" class="bmc-bg-white-box bmc-inner-col">
+
+
+                            <div id="KR" class="overflow-y">
+                                <div *ngFor="let KR of KRCol  " class="content-spacing">
+
+                                    <div [attr.id]="KR.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                        <!-- content -->
+                                        <div class="content-box" (click)="open(content, KR, KR.ID, 'KR')">{{KR.content}}</div>
+
+                                        <!-- edit -->
+                                        <div [attr.id]="'KR-edit-'+KR.ID" class="edit-icon">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="showEditForm(KR,'KR')"></i>
+                                        </div>
+
+                                    </div>
+                                    <div class="bmc-white-box-edit collapsible" [attr.id]="KR.ID + 'editform'">
+                                        <form [formGroup]="bmcForm" class="form">
+                                            <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="KR" name='KR' id="KR-form" (keydown.enter)="edit(KR.ID,'KR')" (focusout)="edit(KR.ID,'KR')"></textarea>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                                <div class="bmc-white-box-edit collapsible" id='add-KR-form'>
+                                    <form [formGroup]="bmcForm" class="form">
+                                        <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="KR" name='KR' id="KR-form" (keydown.enter)="enter('KR')"></textarea>
+                                    </form>
+                                    <div class="align-btn">
+                                        <div>
+                                            <button type="button" class="btn btn-success" style="margin-top: 0.5em;" (click)="enter('KR')">Add</button>
+                                        </div>
+                                        <div class="exit-icon">
+                                            <i class="fa fa-times" aria-hidden="true" (click)="exit('KR')"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-new" id='add-KR-btn'>
+                                <div *ngIf="!this.KRLength" (click)="inputCol('KR')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add a card</div>
+                                <div *ngIf="this.KRLength" (click)="inputCol('KR')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add another card</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="top-bmc-box bmc-inner-col">
+                        <div class="bmc-header"><b>VALUE PROPOSITIONS ({{this.VPLength}})</b></div>
+                        <div class=" bmc-bg-white-box bmc-inner-col">
+
+                            <div id="VP" class="overflow-y">
+                                <div *ngFor="let VP of VPCol  " class="content-spacing">
+
+                                    <div [attr.id]="VP.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                        <!-- content -->
+                                        <div class="content-box" (click)="open(content, VP, VP.ID, 'VP')">{{VP.content}}</div>
+
+                                        <!-- edit -->
+                                        <div [attr.id]="'VP-edit-'+VP.ID" class="edit-icon">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="showEditForm(VP,'VP')"></i>
+                                        </div>
+
+                                    </div>
+                                    <div class="bmc-white-box-edit collapsible" [attr.id]="VP.ID + 'editform'">
+                                        <form [formGroup]="bmcForm" class="form">
+                                            <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="VP" name='VP' id="VP-form" (keydown.enter)="edit(VP.ID,'VP')" (focusout)="edit(VP.ID,'VP')"></textarea>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                                <div class="bmc-white-box-edit collapsible" id='add-VP-form'>
+                                    <form [formGroup]="bmcForm" class="form">
+                                        <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="VP" name='VP' id="VP-form" (keydown.enter)="enter('VP')"></textarea>
+                                    </form>
+                                    <div class="align-btn">
+                                        <div>
+                                            <button type="button" class="btn btn-success" style="margin-top: 0.5em;" (click)="enter('VP')">Add</button>
+                                        </div>
+                                        <div class="exit-icon">
+                                            <i class="fa fa-times" aria-hidden="true" (click)="exit('VP')"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-new" id='add-VP-btn'>
+                                <div *ngIf="!this.VPLength" (click)="inputCol('VP')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add a card</div>
+                                <div *ngIf="this.VPLength" (click)="inputCol('VP')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add another card</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-bmc-box bmc-inner-col">
+                        <div class="bmc-header"><b>CUSTOMER RELATIONSHIPS ({{this.CRLength}})</b></div>
+                        <div style="height: 100%;margin-bottom: 0.5em;" class="bmc-bg-white-box bmc-inner-col">
+
+
+                            <div id="CR" class="overflow-y">
+                                <div *ngFor="let CR of CRCol  " class="content-spacing">
+
+                                    <div [attr.id]="CR.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                        <!-- content -->
+                                        <div class="content-box" (click)="open(content, CR, CR.ID, 'CR')">{{CR.content}}</div>
+
+                                        <!-- edit -->
+                                        <div [attr.id]="'CR-edit-'+CR.ID" class="edit-icon">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="showEditForm(CR,'CR')"></i>
+                                        </div>
+
+                                    </div>
+                                    <div class="bmc-white-box-edit collapsible" [attr.id]="CR.ID + 'editform'">
+                                        <form [formGroup]="bmcForm" class="form">
+                                            <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="CR" name='CR' id="CR-form" (keydown.enter)="edit(CR.ID,'CR')" (focusout)="edit(CR.ID,'CR')"></textarea>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                                <div class="bmc-white-box-edit collapsible" id='add-CR-form'>
+                                    <form [formGroup]="bmcForm" class="form">
+                                        <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="CR" name='CR' id="CR-form" (keydown.enter)="enter('CR')"></textarea>
+                                    </form>
+                                    <div class="align-btn">
+                                        <div>
+                                            <button type="button" class="btn btn-success" style="margin-top: 0.5em;" (click)="enter('CR')">Add</button>
+                                        </div>
+                                        <div class="exit-icon">
+                                            <i class="fa fa-times" aria-hidden="true" (click)="exit('CR')"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-new" id='add-CR-btn'>
+                                <div *ngIf="!this.CRLength" (click)="inputCol('CR')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add a card</div>
+                                <div *ngIf="this.CRLength" (click)="inputCol('CR')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add another card</div>
+                            </div>
+                        </div>
+                        <div class="bmc-header"><b>CHANNELS ({{this.CHLength}})</b></div>
+                        <div style="height: 100%;" class="bmc-bg-white-box bmc-inner-col">
+
+
+                            <div id="CH" class="overflow-y">
+                                <div *ngFor="let CH of CHCol  " class="content-spacing">
+
+                                    <div [attr.id]="CH.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                        <!-- content -->
+                                        <div class="content-box" (click)="open(content, CH, CH.ID, 'CH')">{{CH.content}}</div>
+
+                                        <!-- edit -->
+                                        <div [attr.id]="'CH-edit-'+CH.ID" class="edit-icon">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="showEditForm(CH,'CH')"></i>
+                                        </div>
+
+                                    </div>
+                                    <div class="bmc-white-box-edit collapsible" [attr.id]="CH.ID + 'editform'">
+                                        <form [formGroup]="bmcForm" class="form">
+                                            <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="CH" name='CH' id="CH-form" (keydown.enter)="edit(CH.ID,'CH')" (focusout)="edit(CH.ID,'CH')"></textarea>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                                <div class="bmc-white-box-edit collapsible" id='add-CH-form'>
+                                    <form [formGroup]="bmcForm" class="form">
+                                        <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="CH" name='CH' id="CH-form" (keydown.enter)="enter('CH')"></textarea>
+                                    </form>
+                                    <div class="align-btn">
+                                        <div>
+                                            <button type="button" class="btn btn-success" style="margin-top: 0.5em;" (click)="enter('CH')">Add</button>
+                                        </div>
+                                        <div class="exit-icon">
+                                            <i class="fa fa-times" aria-hidden="true" (click)="exit('CH')"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-new" id='add-CH-btn'>
+                                <div *ngIf="!this.CHLength" (click)="inputCol('CH')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add a card</div>
+                                <div *ngIf="this.CHLength" (click)="inputCol('CH')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add another card</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-bmc-box bmc-inner-col">
+                        <div class="bmc-header"><b>CUSTOMER SEGMENTS ({{this.CSLength}})</b></div>
+                        <div class="bmc-bg-white-box bmc-inner-col">
+
+                            <div id="CS" class="overflow-y">
+                                <div *ngFor="let CS of CSCol  " class="content-spacing">
+
+                                    <div [attr.id]="CS.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                        <!-- content -->
+                                        <div class="content-box" (click)="open(content, CS, CS.ID, 'CS')">{{CS.content}}</div>
+
+                                        <!-- edit -->
+                                        <div [attr.id]="'CS-edit-'+CS.ID" class="edit-icon">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="showEditForm(CS,'CS')"></i>
+                                        </div>
+
+                                    </div>
+                                    <div class="bmc-white-box-edit collapsible" [attr.id]="CS.ID + 'editform'">
+                                        <form [formGroup]="bmcForm" class="form">
+                                            <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="CS" name='CS' id="CS-form" (keydown.enter)="edit(CS.ID,'CS')" (focusout)="edit(CS.ID,'CS')"></textarea>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                                <div class="bmc-white-box-edit collapsible" id='add-CS-form'>
+                                    <form [formGroup]="bmcForm" class="form">
+                                        <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="CS" name='CS' id="CS-form" (keydown.enter)="enter('CS')"></textarea>
+                                    </form>
+                                    <div class="align-btn">
+                                        <div>
+                                            <button type="button" class="btn btn-success" style="margin-top: 0.5em;" (click)="enter('CS')">Add</button>
+                                        </div>
+                                        <div class="exit-icon">
+                                            <i class="fa fa-times" aria-hidden="true" (click)="exit('CS')"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-new" id='add-CS-btn'>
+                                <div *ngIf="!this.CSLength" (click)="inputCol('CS')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add a card</div>
+                                <div *ngIf="this.CSLength" (click)="inputCol('CS')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add another card</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bmc-row-2">
+                    <div class="btm-bmc-box bmc-inner-col">
+                        <div class="bmc-header"><b>COST STRUCTURE ({{this.CostLength}})</b></div>
+                        <div class=" bmc-inner-col bmc-bg-white-box">
+
+
+                            <div id="Cost" class="overflow-y">
+                                <div *ngFor="let Cost of CostCol  " class="content-spacing">
+
+                                    <div [attr.id]="Cost.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                        <!-- content -->
+                                        <div class="content-box" (click)="open(content, Cost, Cost.ID, 'Cost')">{{Cost.content}}</div>
+
+                                        <!-- edit -->
+                                        <div [attr.id]="'Cost-edit-'+Cost.ID" class="edit-icon">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="showEditForm(Cost,'Cost')"></i>
+                                        </div>
+
+                                    </div>
+                                    <div class="bmc-white-box-edit collapsible" [attr.id]="Cost.ID + 'editform'">
+                                        <form [formGroup]="bmcForm" class="form">
+                                            <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="Cost" name='Cost' id="Cost-form" (keydown.enter)="edit(Cost.ID,'Cost')" (focusout)="edit(Cost.ID,'Cost')"></textarea>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                                <div class="bmc-white-box-edit collapsible" id='add-Cost-form'>
+                                    <form [formGroup]="bmcForm" class="form">
+                                        <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="Cost" name='Cost' id="Cost-form" (keydown.enter)="enter('Cost')"></textarea>
+                                    </form>
+                                    <div class="align-btn">
+                                        <div>
+                                            <button type="button" class="btn btn-success" style="margin-top: 0.5em;" (click)="enter('Cost')">Add</button>
+                                        </div>
+                                        <div class="exit-icon">
+                                            <i class="fa fa-times" aria-hidden="true" (click)="exit('Cost')"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-new" id='add-Cost-btn'>
+                                <div *ngIf="!this.CostLength" (click)="inputCol('Cost')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add a card</div>
+                                <div *ngIf="this.CostLength" (click)="inputCol('Cost')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add another card</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btm-bmc-box bmc-inner-col">
+                        <div class="bmc-header"><b>REVENUE STREAMS ({{this.RevLength}})</b></div>
+                        <div class="bmc-inner-col bmc-bg-white-box">
+
+
+                            <div id="Rev" class="overflow-y">
+                                <div *ngFor="let Rev of RevCol  " class="content-spacing">
+
+                                    <div [attr.id]="Rev.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                        <!-- content -->
+                                        <div class="content-box" (click)="open(content, Rev, Rev.ID, 'Rev')">{{Rev.content}}</div>
+
+                                        <!-- edit -->
+                                        <div [attr.id]="'Rev-edit-'+Rev.ID" class="edit-icon">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="showEditForm(Rev,'Rev')"></i>
+                                        </div>
+
+                                    </div>
+                                    <div class="bmc-white-box-edit collapsible" [attr.id]="Rev.ID + 'editform'">
+                                        <form [formGroup]="bmcForm" class="form">
+                                            <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="Rev" name='Rev' id="Rev-form" (keydown.enter)="edit(Rev.ID,'Rev')" (focusout)="edit(Rev.ID,'Rev')"></textarea>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                                <div class="bmc-white-box-edit collapsible" id='add-Rev-form'>
+                                    <form [formGroup]="bmcForm" class="form">
+                                        <textarea autocomplete="off" class='autoExpand' rows='2' formControlName="Rev" name='Rev' id="Rev-form" (keydown.enter)="enter('Rev')"></textarea>
+                                    </form>
+                                    <div class="align-btn">
+                                        <div>
+                                            <button type="button" class="btn btn-success" style="margin-top: 0.5em;" (click)="enter('Rev')">Add</button>
+                                        </div>
+                                        <div class="exit-icon">
+                                            <i class="fa fa-times" aria-hidden="true" (click)="exit('Rev')"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-new" id='add-Rev-btn'>
+                                <div *ngIf="!this.RevLength" (click)="inputCol('Rev')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add a card</div>
+                                <div *ngIf="this.RevLength" (click)="inputCol('Rev')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i>Add another card</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="bmc-credits" class="credits">This work is licensed under the Creative Commons Attributions – Share Alike 3.0 Unported license. To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">http://creativecommons.org/licenses/by-sa/3.0/</a>                or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.</div>
+
+        </div>
+
+    </div>
+
+</div>
+<ng-template #content let-c="close " let-d="dismiss ">
+
+    <div class="bmc-modal-box">
+
+        <div class="modal-header fireside-customised">
+            <div style="width:100%">
+                <div class="display-flex" id="modal">
+                    <h4 class="modal-title"> {{this.titleContent}}</h4>
+                    <!-- edit -->
+                    <div class="edit-icon-desc" (click)="modalEdit()">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </div>
+
+                </div>
+                <div class="collapsible" id="show-modal-form">
+
+                    <form [formGroup]="bmcForm" class="form">
+                        <textarea autocomplete="off" id="modal-form" rows='1' formControlName="{{this.objectType}}" name='{{this.objectType}}' value="{{this.content}}" (keydown.enter)="edit(this.objectID, this.objectType)" (focusout)="edit(this.objectID, this.objectType)"></textarea>
+
+                    </form>
+
+                    <!-- <form [formGroup]="DescForm" class="form">
+                        <textarea autocomplete="off" class='autoExpand' rows='3' formControlName="Desc" name='Desc' id="Desc-form" value="this.desc" (keydown.enter)="cardEnter(this.objectID, this.objectType)"></textarea>
+                    </form> -->
+
+                </div>
+                <h6 style="text-align: start;margin-top: 1em;"> by {{this.object.addedBy}}</h6>
+                <br/>
+                <i class="fa fa-trash" (click)="deleteCard(this.objectID, this.objectType)"></i>
+            </div>
+
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+        </div>
+
+        <!-- {{this.CanvasID}} {{this.Title}} {{this.UserName}} {{this.EvidenceID}} {{this.contentID}} {{this.contentValue}} {{this.contentType}} -->
+
+
+        <ngb-tabset>
+            <ngb-tab title="Description">
+                <ng-template ngbTabContent>
+                    <div style="padding: 1em;">
+                        <div id="desc" class="bmc-bg-white-box" style="display:flex; height: 6em;">
+                            <!-- content -->
+                            <div *ngIf="!this.desc" class="content-box" (click)="cardEdit()">Add a description...</div>
+                            <div *ngIf="this.desc" class="content-box" (click)="cardEdit()">{{this.desc}}</div>
+
+
+
+                        </div>
+
+                        <div class="collapsible" id="desc-form">
+
+                            <form [formGroup]="DescForm" class="form">
+                                <textarea autocomplete="off" class='autoExpand' rows='3' formControlName="Desc" name='Desc' id="Desc-form" value="this.desc" (keydown.enter)="cardEnter(this.objectID, this.objectType)" (focusout)="cardEnter(this.objectID, this.objectType)"></textarea>
+                            </form>
+
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Evidence ({{this.numEvidences}})">
+                <ng-template ngbTabContent>
+
+                    <div class="addEvd-btn" (click)="addEvidence()">
+                        Link an evidence...
+                    </div>
+                    <app-bmc-charts *ngIf="this.numEvidences" [CanvasID]="this.CanvasID" [Title]='this.Title' [UserName]="this.UserName " [type]="this.objectType" [typeID]="this.objectID" [numD]="this.numD" [numLD]="this.numLD" [numN]="this.numN" [numLC]="this.numLC" [numC]="this.numC"></app-bmc-charts>
+                    <!-- <div style="height: 25%" *ngIf="this.numEvidences">
+                        <div class="bmc-white-box">
+                            <div><b>Disconfirming</b></div>
+                            <div *ngIf="!this.numD">0</div>
+                            <div *ngIf="this.numD">{{this.numD}}</div>
+                        </div>
+                        <div class="bmc-white-box">
+                            <div><b>Leaning Disconfirming</b></div>
+                            <div *ngIf="!this.numLD">0</div>
+                            <div *ngIf="this.numLD">{{this.numLD}}</div>
+                        </div>
+                        <div class="bmc-white-box">
+                            <div><b>Neutral</b></div>
+                            <div *ngIf="!this.numN">0</div>
+                            <div *ngIf="this.numN">{{this.numN}}</div>
+                        </div>
+                        <div class="bmc-white-box">
+                            <div><b>Leaning Confirming</b></div>
+                            <div *ngIf="!this.numLC">0</div>
+                            <div *ngIf="this.numLC">{{this.numLC}}</div>
+                        </div>
+                        <div class="bmc-white-box">
+                            <div><b>Confirming</b></div>
+                            <div *ngIf="!this.numC">0</div>
+                            <div *ngIf="this.numC">{{this.numC}}</div>
+                        </div>
+                    </div> -->
+
+                    <!-- view list of evidences -->
+                    <!-- <div *ngIf="this.numEvidences">
+        
+                              
+                                <app-bmc-card [CanvasID]='this.CanvasID' [objectID]='this.object.ID' [type]='this.objectType'></app-bmc-card>
+                            </div> -->
+
+
+
+                </ng-template>
+            </ngb-tab>
+            <!-- <ngb-tab title="Activity">
+                        <ng-template ngbTabContent>
+                            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                                synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                        </ng-template>
+                    </ngb-tab> -->
+
+        </ngb-tabset>
+
+
+
+
+    </div>
+
+</ng-template>

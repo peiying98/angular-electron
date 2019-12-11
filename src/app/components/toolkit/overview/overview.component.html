@@ -1,0 +1,32 @@
+<div class="margin-bottom">
+    <div class="title"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Idea Title
+    </div>
+    <div id="overview-title" class="box" (click)="cardEdit('title')">
+        <div>{{Title}}</div>
+    </div>
+
+
+    <form [formGroup]="overviewForm" class="collapsible " id="overview-title-form">
+        <textarea autocomplete="off" class='autoExpand edit-box' style="width: 100%; height: auto" formControlName="title" id="overview-title-edit" name='title' value="this.cache" (keydown.enter)="cardEnter('title')" (focusout)="cardEnter('title')"></textarea>
+    </form>
+
+
+</div>
+<!-- Problem statement -->
+<div class="margin-bottom">
+    <div class="title"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Problem Statement
+        <div class="tooltip">
+            <span class="tooltiptext">Tooltip text</span>
+        </div>
+    </div>
+    <div id="overview-prob" class="ps-box" (click)="cardEdit('prob')">
+        <div>{{ProblemStatement}}</div>
+    </div>
+
+
+    <form [formGroup]="overviewForm" class="collapsible " id="overview-prob-form">
+        <textarea autocomplete="off" class='autoExpand edit-ps-box' style="width: 100%; height: auto" rows="5" formControlName="prob" id="overview-prob-edit" name='prob' value="this.cache" (keydown.enter)="cardEnter('prob')" (focusout)="cardEnter('prob')"></textarea>
+    </form>
+
+
+</div>

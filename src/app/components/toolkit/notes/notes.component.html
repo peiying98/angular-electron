@@ -1,0 +1,29 @@
+<div class="notes-info-box">Time to jot down that million dollar idea!</div>
+  <form [formGroup]="notesForm">
+    <div class="notes-1">
+      <input name="addNotesInput" formControlName="notes" class="notes-line" placeholder="Eg. Conducted 55 face-to-face interviews, 81% validated idea." (keyup.enter)="addNotes()"/>
+        <div class="go-btn" (click)="addNotes()">Go</div>
+    </div>
+  </form>
+
+<div class="notesCol-section">
+  <div *ngFor="let note of notesCol | async" class="notesCol-box">
+    <div class="flex">
+      <div class="font">Posted on: {{note.timeStamp | date:'mediumDate' }}</div>
+        <div [attr.id]="note.ID+'trashBtn'" class="trash-btn" (click)="showDel(note)">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </div>
+        <div [attr.id]="note.ID+'delDiv'" class="post-trash">
+          <div class="flex">
+            <div [attr.id]="note.ID+'delYes'" class="delete-tick-icon" (click)='deleteNote(note)'>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </div>
+            <div [attr.id]="note.ID+'delNo'" class="delete-cross-icon" (click)="hideDel(note)">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{note.content}}
+    </div>
+  </div>

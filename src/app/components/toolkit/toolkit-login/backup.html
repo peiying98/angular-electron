@@ -1,0 +1,109 @@
+<body>
+    <div class="masthead">
+        <div class="masthead-bg"></div>
+        <nav class="navbar">
+            <a class="navbar-ps" href="#">
+                <img src="/assets/images/navbar-logo-2-2.png" class="nav-img">
+            </a>
+        </nav>
+        <div class="container h-100">
+            <div class="row h-align">
+                <div class="col-12 my-auto">
+                    <div class="masthead-content text-white py-5 py-md-0">
+                        <h1 class="mb-3">Pitchspot Toolkit</h1>
+                        <p class="mb-5">Here's your ideation Toolkit. Realise the potential of your ideas with Pitchspot's analytical tools and startup resources.</p>
+
+                        <div class="input-group input-group-newsletter">
+                            <form [formGroup]="signupForm">
+                                <div style="display: flex;">
+                                    <div class="fb_btn " (click)="loginFB()">Log in with Facebook</div>
+                                    <div class="google_btn " (click)="loginGoogle()">Log in with Google</div>
+
+                                </div>
+                                <div id="errorMsg" class="signup_err_msg">This email is already in use.</div>
+                                <input id="firstName" class="signup-input-field" placeholder="Name" formControlName="signupName" type="text" />
+                                <input class="signup-input-field" placeholder="Email" formControlName="signupEmail" type="email" />
+                                <input id="signuppassword" class="signup-input-field" placeholder="Password" type="password" formControlName="signupPassword" (keyup.enter)=" signup()" />
+                                <input id="loginpassword" class="signup-input-field" placeholder="Password" type="password" formControlName="signupPassword" (keyup.enter)=" login()" />
+
+                                <div id="signup-btn" class="signup_btn btn btn-secondary " (click)=" signup()"> Let's Change the World!</div>
+                                <div id="login-btn" class="signup_btn btn btn-secondary " (click)="login()"> Login</div>
+                                <div id="forgetPassword" class="signup_btn btn btn-secondary " (click)="forgetPassword()">Reset</div>
+                                <div id="tnc" class="tnc_text">By signing up, you agree to Pitchspot's
+                                    <a target="_blank" href="https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Other-Guides/guide-on-dp-clauses-for-agreements-related-to-processing-of-personal-data-v1-0-(200716).pdf">
+                                      Terms of Use and Privacy Policy.
+                      </a>
+                                </div>
+                            </form>
+                            <div class="toggle_text">
+                                <div id="loginDesc" class="tnc_text">Already have an account? Log in
+                                    <a id="loginForm" href="javascript:void(0);">Here</a>
+                                </div>
+                                <div id="signupDesc" class="tnc_text">Do not have an account? Sign up
+                                    <a id="signupForm" href="javascript:void(0);">Here</a>
+                                </div>
+
+                                <a id="showforgetPassword" href="javascript:void(0);">Forgot Password?</a>
+                                <a id="showloginPassword" href="javascript:void(0);">Back to Login</a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container container-s5 footer-font">
+        <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3 ">
+            <div class="pt-3 px-3 pt-md-4 px-md-5 text-center overflow-hidden ">
+                <div class="padding ">
+                    <img src="/assets/images/lightbulb-logo.png " class="light-bulb " title="Pitchspot " (click)="scrollUp() ">
+                </div>
+            </div>
+            <div class="pt-md-4 px-md-5 text-center overflow-hidden ">
+                <div class="py-2 ">
+                    <div class="header-5 "><b>GET COFFEE WITH US</b></div>
+                    <p>
+                        <div class="section-5-text ">
+                            <a class="link link:hover " target="_blank " href="mailto:hello@pitchspot.co ">hello@pitchspot.co</a>
+                            <br>
+                            <p class="address">
+                                The Hangar at NUS Enterprise, <br/> 21 Heng Mui Keng Terrace, Singapore 119613</p>
+                        </div>
+                        <ul class="d-md-flex justify-content-start flex-md-equal cluster ">
+                            <li>
+                                <a target="_blank " href="https://www.facebook.com/pitchspot "><img src="/assets/images/facebook-grey.png " class="social-media-logo social-media-logo:hover "></a>
+                            </li>
+                            <li>
+                                <a target="_blank " href="https://instagram.com/teampitchspot/ "><img src="/assets/images/instagram-grey.png " class="social-media-logo social-media-logo:hover "></a>
+                            </li>
+                            <li>
+                                <a target="_blank " href="https://www.linkedin.com/company/pitchspot "><img src="/assets/images/linkedin-grey.png " class="social-media-logo social-media-logo:hover "></a>
+                            </li>
+                            <li>
+                                <a target="_blank " href="https://www.medium.com/pitchspot "><img src="/assets/images/medium-grey.png " class="social-media-logo social-media-logo:hover "></a>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+            <div class="pt-md-4 px-md-5 text-center overflow-hidden ">
+                <div class="py-2 ">
+                    <div class="header-5 "><b>COMPANY</b></div>
+                    <p>
+                        <div class="section-5-text ">
+                            <a class="link link:hover" target="_blank" href="/business">Enterprise</a>
+                            <br>
+                            <a class="link link:hover" target="_blank" href="https://www.facebook.com/pitchspot/posts/769402283421789">Recent Updates</a>
+                            <br>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer ">© Pitchspot 2018</div>
+    </div>
+</body>

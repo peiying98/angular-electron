@@ -1,0 +1,284 @@
+<style>
+    .fade-in {
+        opacity: 1;
+        animation-name: fadeInOpacity;
+        animation-timing-function: ease-in;
+        animation-duration: 0.25s;
+    }
+    
+    @keyframes fadeInOpacity {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    .box {
+        padding: 2.5em 10em;
+        display: flex;
+        justify-content: space-between;
+        font-family: 'Montserrat';
+        border-top: solid 1px #e4e4e4;
+    }
+    /* */
+    
+    .side-col {
+        width: 25%
+    }
+    
+    .main-col {
+        width: 75%;
+        margin-left: 1em;
+    }
+    
+    .user-img {
+        display: block;
+        margin: auto;
+        height: 12em;
+        width: 12em;
+        padding: 0 1em;
+        border-radius: 50%;
+        background: black;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        box-shadow: 0px 0px 20px -3px rgba(0, 0, 0, 0.24);
+    }
+    
+    .intro {
+        font-size: 3em;
+        color: #484848;
+        font-weight: bold;
+    }
+    
+    .basic-info {
+        color: #484848;
+        font-weight: bold;
+    }
+    
+    .edit-button {
+        font-weight: bold;
+        color: #0084a8;
+        cursor: pointer;
+    }
+    
+    .edit-button:active {
+        text-decoration: none;
+        outline: 0;
+    }
+    
+    .mantra {
+        /* width: 70%; */
+        margin-top: 0.5em;
+        color: #484848;
+        text-align: center;
+    }
+    
+    .about-me-box {
+        margin-top: 1em;
+        /* border: solid #dce0e0 1px; */
+        border-bottom: none;
+    }
+    
+    .pitches-box {
+        border: solid #dce0e0 1px;
+        border-top: none;
+        padding: 1em;
+        display: flex;
+    }
+    
+    .about-me-header {
+        text-align: center;
+        border: solid #dce0e0 1px;
+        color: #4d4848;
+        font-weight: bold;
+        /* background: #edefed; */
+        padding: 0.5em 0em;
+    }
+    
+    .about-me-body {
+        border: solid #dce0e0 1px;
+        padding: 1em;
+    }
+    
+    .pitch-icon {
+        width: 3em;
+        height: 3em;
+        margin-right: 0.5em;
+    }
+    
+    .user-overview {
+        color: #666666;
+        display: flex;
+        margin: 2em 0 0 0;
+    }
+    
+    .each-item {
+        display: flex;
+        margin-right: 1em;
+    }
+    
+    .banner-title {
+        font-size: 1.25em;
+        margin: auto;
+        font-weight: bold;
+    }
+    
+    .empty-overview {
+        margin-top: 1em;
+    }
+    
+    .start-a-pitch {
+        font-weight: bold;
+        color: #11264b;
+        cursor: pointer;
+    }
+    
+    .image-upload>input {
+        display: none;
+    }
+    
+    .view-more {
+        width: 30%;
+        display: block;
+        margin: auto;
+        padding: 0.5em;
+        text-align: center;
+        border-radius: 0.25em;
+        background: #ee464f;
+        color: white;
+        font-weight: bold;
+        transition-duration: 1s;
+        cursor: pointer;
+    }
+    
+    .pitch-metadata {
+        width: 70%;
+    }
+    
+    .pitch-pitchname {
+        font-weight: bold;
+        color: #11264b;
+    }
+    
+    .user-img {
+        display: block;
+        margin: auto;
+        height: 12em;
+        width: 12em;
+        padding: 0 1em;
+        border-radius: 50%;
+        background: white;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        box-shadow: 0px 0px 20px -3px rgba(0, 0, 0, 0.24);
+    }
+    
+    .no-pitch {
+        display: block;
+        margin: auto;
+        text-align: center;
+    }
+</style>
+
+<div class=" box fade-in" *ngIf="userData | async as user">
+    <div class="" *ngIf="!currentUser">
+
+        Please sign in to view {{user.firstName}}'s' profile
+
+    </div>
+
+    <div class="side-col" *ngIf="currentUser">
+
+        <div class="user-img" *ngIf="user.profileImg !== ''" [ngStyle]="{'background-image':  'url(' + user.profileImg + ')'}"></div>
+        <div class="user-img" *ngIf="user.profileImg == ''" [ngStyle]="{'background-image': 'url( ../../../../../assets/images/navbar-logo-2.png)'}">&nbsp;</div>
+        <div class="about-me-box" *ngIf="!user.school=='' && !user.work=='' ">
+            <div class="about-me-header">
+                About me
+            </div>
+            <div class="about-me-body">
+                <div *ngIf="!user.school==''  "> <b>School</b><br/>{{user.school}}<br/></div>
+                <div *ngIf="!user.work==''  "> <b>Work</b><br/> {{user.work}}</div>
+            </div>
+        </div>
+
+        <!--  <div class="about-me-box">
+                 <div class="about-me-header">
+                    Recent Engagements
+                </div> -->
+        <!-- <div class="about-me-body">
+                        <b>Hackathons</b><br/>Loreal Brandstorm<br/>
+                        <b>Business Case</b>
+                        <br/> NUS biz school Biz case
+        
+                    </div> -->
+        <!-- <div class="about-me-body">
+                    You do not currently have any existing engagements.
+                    <div class="edit-button" *ngIf="user.pitch=='0'  "> Start a pitch</div>
+                    <div class="edit-button" *ngIf="user.competition=='0'  "> View Competitions</div>
+                </div> 
+            </div>-->
+    </div>
+
+    <div class="main-col fade-in" *ngIf="currentUser">
+        <div class="intro">
+            Hello, its {{user.firstName}}!
+        </div>
+        <div class="basic-info">
+            {{user.location}} · joined on {{user.TimeStamp | date:'longDate' }}
+        </div>
+        <div class="edit-button" *ngIf="currentUser.uid == user.uid" routerLink="/edit-profile">
+            Edit Profile
+        </div>
+
+        <div class="mantra">
+            <b>{{user.firstName}}'s take on the world:</b> <br/> <i class="fa fa-quote-left" style="font-size:1.5em;" aria-hidden="true"></i> {{user.about}}<i class="fa fa-quote-right" style="font-size:1.5em;" aria-hidden="true"></i>
+        </div>
+        <div class="mantra">
+            <b>{{user.firstName}}'s interest:</b> <br/> {{user.interest}}
+        </div>
+        <div class="about-me-box">
+            <div class="about-me-header">
+                {{user.firstName}}'s Pitches
+            </div>
+        </div>
+        <div class="pitches-box" *ngIf="!(userPitches|async)">
+            <div class="no-pitch">
+                You currently do not have any Pitches. <br/> <a routerLink="/pitch/post"><b>Start pitching!</b></a>
+            </div>
+        </div>
+        <div class="pitches-box" *ngFor=" let userpitches of userPitches | async">
+            <div class="pitch-metadata">
+                <div class="pitch-pitchname">{{userpitches.PitchName | uppercase}}</div>
+                <span style="font-size: 0.8em"> {{userpitches.TimeStamp | date:'longDate'}}</span>
+                <br/> Problem Statement: {{userpitches.ProblemStatement}}
+                <br/>
+            </div>
+            <div class="view-more" routerLink="/pitch/view/{{userpitches.PitchID}}">View Full Pitch </div>
+
+        </div>
+
+        <!-- <div class="user-overview">
+                <div class="each-item">
+                    <img class="pitch-icon" src="https://image.flaticon.com/icons/svg/178/178395.svg">
+                    <div class="banner-title">x0 Pitch
+                    </div>
+                </div>
+                <div class="each-item">
+                    <img class="pitch-icon" src="../../assets/images/cup.svg">
+                    <div class="banner-title">x0 Award
+                    </div>
+                </div>
+            </div>
+            <div class="empty-overview">
+                It seems like you do not have any pitches. <span class="start-a-pitch">Click to start a pitch.</span>
+            </div>
+            <div class="empty-overview">
+                It seems like you do not have any awards. <span class="start-a-pitch">Click to view competitions.</span>
+            </div> -->
+
+    </div>
+</div>

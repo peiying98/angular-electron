@@ -19,15 +19,23 @@
             "assets": [
               "src/assets",
               "src/favicon.ico",
+              "src/robots.txt",
+              "src/sitemap.xml",
               "src/favicon.png",
               "src/favicon.icns",
               "src/favicon.256x256.png",
               "src/favicon.512x512.png"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "bootstrap.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/angular-instantsearch/bundles/instantsearch.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery/dist/jquery.min.js"
+            ]
           },
           "configurations": {
             "dev": {
@@ -93,9 +101,15 @@
             "polyfills": "src/polyfills-test.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "scripts": [],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery/dist/jquery.min.js"
+            ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "bootstrap.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/angular-instantsearch/bundles/instantsearch.min.css"
             ],
             "assets": [
               "src/assets",
@@ -123,6 +137,7 @@
     },
     "angular-electron-e2e": {
       "root": "e2e",
+      "sourceRoot": "e2e",
       "projectType": "application",
       "architect": {
         "lint": {

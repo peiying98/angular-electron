@@ -1,0 +1,88 @@
+<span *ngIf="(loading && this.sublist != 0) || (this.listlength == 0 && !loading) || !loading">
+<div class="page">
+    <div class="newsfeed-mobile-resp">
+            <div class="keyword-update-column">
+                <div class="keyword-container">
+                    <div class="section-header"><i class="fa fa-tag" aria-hidden="true"></i> Keywords
+                    </div>
+                
+                    <div class="keyword-box" >
+                        <form [formGroup]="competitorForm" >
+                
+                            <div class="keyword-box-2">
+                                <input id="maxinput" name="addCompetitorInput" formControlName="competitorName" (keyup.enter)="addCompetitor()" />
+                                <div *ngIf="this.auth.isVerified()" id="maxkeyword" (click)="addCompetitor()" >Add</div>
+                                <div *ngIf="!this.auth.isVerified()" id="verifybtn" (click)="resendVerification()">Verify email</div>
+                              </div>
+                        </form>
+                        <div *ngIf="this.listlength == 0 && !loading" class="keyword-blank-prompt">
+                            There are currently no keywords for your newsfeed. Add a keyword to keep up to date with.
+                        </div>
+                        <div class="keywords-holder">
+                            <div *ngFor="let ele of sublist" class="keyword-tag">
+                                <div class="keyword-text">
+                                    <b>{{ele.content}}</b>
+                                </div>
+                                <div class="del-cross">
+                                    <i class="fa fa-times" (click)="unsubscribe(ele.content, ele.IDref)"></i>
+                                </div>
+                            </div>
+                
+                        </div>
+                    </div>
+                </div>
+                <div class="update-box">
+                    <div class="section-header"><i class="fa fa-lightbulb-o" aria-hideeen="true"></i> Pitchspot Updates</div>
+
+                    <div class="update-view">
+                        <div class="updates-holder">
+                            <div id="listDiv" *ngFor="let item of listMedium; let i = index; let last = last" (click)="navigateTo(item)" class="update-box-2">
+                                <div class="update-box-3">
+                                    <div class="update-title"><b>{{item.title}}</b></div>
+                                    <div class="update-body"><i>{{item.subtitle}}</i></div>
+                                    <div class="update-footer"><b>Read More</b></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+
+        <div class="newsfeed-column" >
+            <div class="section-header"><i class="fa fa-rss" aria-hidden="true"></i> Recent News</div>
+            <div class="newsfeed-view">
+                <div class="newsfeed-blank-prompt" *ngIf="this.listlength == 0 && !loading">There are currently no news updates. Add keywords of your interests.</div>
+                <div class="newsfeed-blank-prompt" *ngIf="this.sublist != 0 && this.listlength != 0 && list.length == 0 && !loading">There are currently no news yet! Add more broader keywords, eg. fintech.</div>
+                <div id="listDiv" *ngFor="let item of list; let i = index ; let last = last" (click)="navigateTo(item)">
+                    <div class="newsfeed-image-box">
+                        <img class="newsfeed-image" src="{{item.img}}">
+                        <div class="newsfeed-entry-keyword"><b>{{item.category | uppercase}} </b></div>
+                    </div>
+
+                    <div class="newsfeed-content-box">
+                        <div class="newsfeed-content-title" ><b>{{item.title}}</b></div>
+                        <div class="newsfeed-content-source"><i> {{item.source}}</i></div>
+                        <div class="newsfeed-content-body" >{{item.desc}} <b>Read More</b></div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+
+
+</div>
+{{this.callFunction()}}
+</span>
+
+<div *ngIf="loading" class="loading">
+    <div class="lds-ripple">
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+
+
+<!--     -->

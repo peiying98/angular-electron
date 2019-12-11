@@ -1,0 +1,97 @@
+<div class="container ">
+
+    <div class="title">
+        Add Evidence
+    </div>
+    <!-- <div *ngIf="" class="empty-collab ">No evidence yet! Start document your evidence here now!</div> -->
+
+    <div class="flex">
+
+        <div style="text-align: center; margin-bottom: 1em;">
+            <div class="evidence-summary" (click)="open(content,'ftf')">
+                <img src="/assets/images/f2f.svg" width="60px" height="60px">
+            </div>
+            Face to Face
+        </div>
+
+
+        <div style="text-align: center; margin-bottom: 1em;">
+            <div class="evidence-summary" (click)="open(content,'video')">
+
+                <img src="/assets/images/video.svg" width="60px" height="60px">
+            </div>
+            Video
+        </div>
+
+
+        <div style="text-align: center; margin-bottom: 1em;">
+            <div class="evidence-summary" (click)="open(content,'phone')">
+
+                <img src="/assets/images/phone.svg" width="60px" height="60px">
+            </div>
+            Phone
+        </div>
+
+
+        <div style="text-align: center; margin-bottom: 1em;">
+            <div class="evidence-summary" (click)="open(content,'survey')">
+                <img src="/assets/images/survey.svg" width="60px" height="60px">
+            </div>
+            Survey
+        </div>
+
+        <div style="text-align: center; margin-bottom: 1em;">
+            <div class="evidence-summary" (click)="open(content, 'secondary')">
+
+                <img src="/assets/images/research.svg" width="60px" height="60px">
+
+            </div>
+            Secondary Research
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-c="close " let-d="dismiss ">
+    <div class="modal-box">
+        <div class="modal-header fireside-customised">
+            <h4 class="modal-title" id="modal-basic-title" *ngIf="this.interviewType == 'ftf'"> Add Face-to-Face Interview</h4>
+            <h4 class="modal-title" id="modal-basic-title" *ngIf="this.interviewType == 'video'"> Add Video Interview</h4>
+            <h4 class="modal-title" id="modal-basic-title" *ngIf="this.interviewType == 'phone'"> Add Phone Interview</h4>
+            <h4 class="modal-title" id="modal-basic-title" *ngIf="this.interviewType == 'survey'"> Add Survey</h4>
+            <h4 class="modal-title" id="modal-basic-title" *ngIf="this.interviewType == 'secondary'"> Add Secondary Research</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+</button>
+        </div>
+        <!-- <div class="modal-body">
+            <div class="header"></div>
+        </div> -->
+        <form [formGroup]="newEvidenceForm">
+            <div id="doneMsg" class="done_msg">Evidence Added!</div>
+            <div id="undoneMsg" class="undone_msg">Please fill up all the required fields!</div>
+            <div class="newTopic-form fireside-customised" *ngIf="this.interviewType !== 'secondary'">
+                <input placeholder="Interviewee's Name" formControlName="interv_name" required/>
+                <input placeholder="Interviewee's Email" formControlName="interv_email" required/>
+                <input placeholder="Interviewed By" formControlName="interv_by" required/>
+                <input placeholder="Interview Date" formControlName="interv_date" type="text" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" (keyup)="d.toggle()" required/>
+                <textarea placeholder="Key Insights" rows='5' formControlName="keyInsights" (keydown.enter)="addNewEvd()" required></textarea>
+                <textarea placeholder="Notes" rows='5' formControlName="interv_notes" (keydown.enter)="addNewEvd()"></textarea>
+                <!-- <div style="display:flex">http://www.
+                    <input placeholder="Link" formControlName="link" />
+                  </div> -->
+            </div>
+            <div class="newTopic-form fireside-customised" *ngIf="this.interviewType === 'secondary'">
+
+                <textarea placeholder="Key Insights" rows='5' formControlName="keyInsights" required></textarea>
+                <textarea placeholder="Notes" rows='5' formControlName="interv_notes"></textarea>
+                <input placeholder="Link" formControlName="link" (keydown.enter)="addNewEvd()" required/>
+                <!-- <div style="display:flex">http://www.
+                            <input placeholder="Link" formControlName="link" />
+                          </div> -->
+            </div>
+        </form>
+
+
+        <div (click)="addNewEvd()" class="add-newTopic-btn">Add</div>
+    </div>
+</ng-template>

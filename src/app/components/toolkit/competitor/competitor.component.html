@@ -1,0 +1,82 @@
+<div style=" box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);padding: 1em; text-align: center; background: white; margin-bottom: 5em;">
+    Competitor update feature has been deprecated. Please use newsfeed feature under 'home' button.
+
+</div>
+
+
+<form [formGroup]="competitorForm">
+
+    <div style="display: flex; margin-bottom: 1em;">
+        <input name="addCompetitorInput" formControlName="competitorName" style="width:100%; border: none; outline: none; background: none; border-bottom: 3px dotted #11264b;" placeholder="eg. Deliveroo" (keyup.enter)="addCompetitor()" disabled />
+        <div style="margin-left: auto; padding: 1em; width: 10em;border: 3px solid #11264b; text-align:center; font-weight: bold;cursor: pointer; margin-left: 0.5em;">Deprecated</div>
+    </div>
+</form>
+<span *ngIf="(loading && this.sublist != 0) || (this.listlength == 0 && !loading) || !loading">
+<div style="margin-bottom: 1em" >
+
+    <div style="padding: 0.25em;">Keywords <i class="fa fa-tag" aria-hidden="true"></i>
+    </div>
+    <div style="background: white; padding: 1em; box-shadow: 0px 16px 25px 0px #11264b17;">
+
+        <div *ngIf="this.listlength == 0 && !loading" style="text-align: center;">
+            There are currently no competitor keywords. Add a competitor to keep up to date with.
+        </div>
+        <div class="keywords-holder">
+            <div *ngFor="let ele of sublist" class="keyword-tag">
+                <div class="keyword-text">
+                    <b>{{ele.content}}</b>
+                </div>
+                <div class="del-cross">
+                    <i class="fa fa-times" (click)="unsubscribe(ele.content, ele.IDref)"></i>
+                </div>
+            </div>
+
+        </div>
+</div>
+
+
+</div>
+<div style="margin-bottom: 1em">
+    <div style="padding: 0.25em;">Updated News <i class="fa fa-rss" aria-hidden="true"></i>
+    </div>
+    <div style="background: white; padding: 1em; box-shadow: 0px 16px 25px 0px #11264b17;" *ngIf="this.listlength == 0 && !loading">
+        <div style="text-align: center;">
+            There are currently no competitor updates. Add a competitor to keep up to date with.
+        </div>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; position: relative; ">
+
+        <div id="listDiv" *ngFor="let item of list; let i = index ; let last = last">
+
+            <div style="display: flex;">
+                <div style=" top:0; left:0; background: #fd79a8; color: white; padding: 1em;"><b>{{item.category | uppercase}} </b></div>
+            </div>
+            <div style="padding:1em; position: relative; width:100%;">
+
+                <div class="navigate" style="  transition-duration: 1s;text-align:center; cursor:pointer; height: 5em; overflow: hidden" (click)="navigateTo(item)">{{item.title}}</div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div style="background: white; padding: 1em; box-shadow: 0px 16px 25px 0px #11264b17;" *ngIf="this.sublist != 0 && this.listlength != 0 && list.length == 0 && !loading">
+        <div style="text-align: center;">
+            There are currently no news yet! Add more competitors.
+        </div>
+    </div>
+
+</div>
+{{this.callFunction()}}
+</span>
+
+<div *ngIf="loading" style="position: relative; top: 60%; left: 45%; z-index: 99">
+    <div class="lds-ripple">
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+
+
+<!--     -->

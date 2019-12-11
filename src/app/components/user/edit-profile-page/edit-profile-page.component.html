@@ -1,0 +1,116 @@
+<div class="box fade-in margin">
+  <div class="menu-column">
+    <div class="menu-navigation" (click)="profile=true;photo=false" [ngClass]="{ 'bolder':profile}">Edit Profile
+  </div>
+    <div class="menu-navigation" (click)="photo=true;profile=false" [ngClass]="{ 'bolder':photo}">Edit Photo
+  </div>
+    <div class="view-profile" routerLink="/user/{{user.uid}}">View Profile</div>
+  </div>
+
+<div class="edit-column" *ngIf="userData | async as user">
+  <form [formGroup]="editProfileForm" *ngIf="profile">
+    <div class="edit-section">
+      <div class="edit-header">Required</div>
+      <div class="divline"></div>
+        <div class="edit-box">
+          <div class="input-row">
+            <div class="input-title">First Name</div>
+              <input class="form-control" [(ngModel)]="user.firstName" type="email" formControlName="firstName" required />
+          </div>
+
+          <div class="input-row">
+            <div class="input-title">Last Name</div>
+              <input class="form-control" type="email" [(ngModel)]="user.lastName" formControlName="lastName" required />
+          </div>
+            <div class="input-row">
+            <div class="input-title"></div>
+              <div class="notes">Your public profile only shows your first name. When you engage other users to collaborate with you on
+                The Pitchspot Toolkit, they will be able to see your first and last name.
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="input-title">Location</div>
+              <input class="form-control" type="email" formControlName="location" [(ngModel)]="user.location" required />
+          </div>
+          <div class="input-row">
+            <div class="input-title"></div>
+              <div class="notes">Pitchspot has a global presence. By indicating your location, Pitchspot is able to provide you with better curation of articles on the AI-Newsfeed.</div>
+          </div>
+
+          <div class="input-row about-title">
+            <div class="about-title">About</div>
+              <textarea class="form-control" name="textarea" style="height:10em;" formControlName="about" [(ngModel)]="user.about"></textarea>
+              </div>
+
+          <div class="input-row">
+            <div class="input-title"></div>
+              <div class="notes">What is it that makes you tick, what keeps you up at night, and what gets you up in the morning?
+                <br/><br/>Tell others about you, so that users can slide into your DMs and work together on that billion-dollar idea.
+              </div>
+          </div>
+
+          <div class="input-row about-title">
+            <div class="about-title">Interests</div>
+              <textarea class="form-control " name="textarea" style="height:10em;" formControlName="interest" [(ngModel)]="user.interest"></textarea>
+          </div>
+
+          <div class="input-row">
+            <div class="input-title"></div>
+              <div class="notes">Share a little about what you are most passionate about.
+                Eg. VR, FinTech, F&B Tech, EdTech, etc.
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- start of additional info section -->
+    <div class="edit-section">
+      <div class="edit-header">Additional Information</div>
+        <div class="divline"></div>
+    <div class="edit-box">
+      <div class="input-row">
+        <div class="input-title">School</div>
+          <input class="form-control" type="email" formControlName="school" [(ngModel)]="user.school" required />
+      </div>
+        <div class="input-row">
+          <div class="input-title">Work</div>
+            <input class="form-control" type="email" formControlName="work" [(ngModel)]="user.work" required />
+        </div>
+      </div>
+    </div>
+      <div class="save-btn save-btn:hover" (click)=setInfo(user);open(content)>Save</div>
+</form>
+
+<!-- PHOTO FORM -->
+  <form [formGroup]="editProfileForm" *ngIf="photo">
+    <div class="edit-section">
+      <div class="edit-header">Required</div>
+        <div class="edit-box">
+          <div class="">
+            <div *ngIf="user.profileImg" class="user-img" [ngStyle]="{'background-image': 'url(' + user.profileImg+ ')'}">&nbsp;</div>
+            <div *ngIf="!user.profileImg" class="user-img" [ngStyle]="{'background-image': 'url( ../../../assets/images/navbar-logo-2.png)'}">&nbsp;</div>
+          </div>
+            <app-upload-form></app-upload-form>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+    <div class="modal-body">Profile Updated!
+      <div class="view-profile" routerLink="/user/{{user.uid}}" (click)="d('Cross click')">View Profile</div>
+    </div>
+</ng-template>
+
+<!-- <input class="form-control " placeholder="" type="email"  required /> -->
+<!-- <input class="form-control " placeholder="" type="text" formControlName="email" required /> -->
+<!-- <input id="file-input" type="file" accept="image/*" /> -->
+<!-- upload form component will manage -->
+<!-- <div class="save-btn">Save</div> -->

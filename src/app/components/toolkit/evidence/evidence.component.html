@@ -1,0 +1,47 @@
+<div style="overflow-y: scroll; height: 70vh;">
+    <app-add-evidence [CanvasID]="this.CanvasID" [Title]='this.Title' [UserName]="this.UserName"></app-add-evidence>
+    <div class="container ">
+
+        <div class="title " *ngIf="this.numEvidences">
+            My Evidence ({{this.numEvidences}})
+        </div>
+        <!-- <div *ngIf=" " class="empty-collab ">No evidence yet! Start document your evidence here now!</div> -->
+
+        <div class="flex " style="height: 40%; margin-bottom: 1em;">
+
+            <div *ngFor="let evidence of evidences; let i=index " class="evidence-summary " (click)="open(evdcontent) ">
+
+                <div style="text-align: left; ">
+                    <div style="display: flex; margin-bottom: 1em">
+                        <img src="/assets/images/f2f.svg" width="50px" height="50px" *ngIf="evidence.typeOf == 'ftf'">
+                        <img src="/assets/images/video.svg" width="50px" height="50px" *ngIf="evidence.typeOf == 'video'">
+                        <img src="/assets/images/phone.svg" width="50px" height="50px" *ngIf="evidence.typeOf == 'phone'">
+                        <img src="/assets/images/survey.svg" width="50px" height="50px" *ngIf="evidence.typeOf == 'survey'">
+                        <img src="/assets/images/research.svg" width="50px" height="50px" *ngIf="evidence.typeOf == 'secondary'">
+                        <div style="margin-left: 2em">
+                            <div>{{evidence.timeStamp | date:'mediumDate'}}</div>
+                            <div *ngIf="evidence.typeOf !== 'secondary'"><b>{{evidence.name}}</b></div>
+                            <div *ngIf="evidence.typeOf === 'secondary'"><a href="{{evidence.link}}" target="_blank">Link</a></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="hyphenate"><b>Key Insights:</b> <br/>{{evidence.keyInsights}}</div>
+                </div>
+
+
+                <ng-template #evdcontent let-c="close " let-d="dismiss ">
+                    <app-evidence-card [CanvasID]="this.CanvasID" [Title]="this.Title" [UserName]="this.UserName" [EvidenceID]="evidence.EvidenceID" [mr]="this.mr"></app-evidence-card>
+                </ng-template>
+
+
+
+
+            </div>
+            <!-- <div class="evidence-summary "><i class="fa fa-plus "></i> </div> -->
+        </div>
+
+
+    </div>
+</div>

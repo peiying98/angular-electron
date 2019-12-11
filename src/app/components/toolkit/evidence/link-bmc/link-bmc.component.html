@@ -1,0 +1,219 @@
+<div (click)="openBMC(bmclink) " class="connect-btn ">Connect Evidence</div>
+<ng-template #bmclink id="bmclink " let-c="close " let-d="dismiss ">
+    <div class="bmc-modal-box ">
+
+        <div class="margin fade-in">
+            <div class="modal-header fireside-customised ">
+                <h4 class="modal-title " id="modal-basic-title " *ngIf="!this.Validation">Please select an option (Disconfirming to Confirming)!</h4>
+                <h4 class="modal-title " id="modal-basic-title " *ngIf="this.Validation"> Link Evidence as <b><u>{{this.Validation}}</u></b></h4>
+
+                <button type="button " class="close " aria-label="Close " (click)="d( 'Cross click') ">
+                                    <span aria-hidden="true ">&times;</span>
+            </button>
+            </div>
+            <div class="container selVal">
+                <i class="far fa-frown-open" [ngClass]="{'selectedD':this.Validation == 'Disconfirming', 'flashit':!this.status}" title="Disconfirming" (click)="selectVal('Disconfirming')"></i>
+                <i class="far fa-frown" [ngClass]="{'selectedLD':this.Validation == 'Leaning Disconfirming', 'flashit':!this.status}" title="Leaning Disconfirming" (click)="selectVal('Leaning Disconfirming')"></i>
+                <i class="far fa-meh" [ngClass]="{'selectedN':this.Validation == 'Neutral', 'flashit':!this.status}" title="Neutral" (click)="selectVal('Neutral')"></i>
+                <i class="far fa-smile" [ngClass]="{'selectedLC':this.Validation == 'Leaning Confirming', 'flashit':!this.status}" title="Leaning Confirming" (click)="selectVal('Leaning Confirming')"></i>
+                <i class="far fa-grin" [ngClass]="{'selectedC':this.Validation == 'Confirming', 'flashit':!this.status}" title="Confirming" (click)="selectVal('Confirming')"></i>
+            </div>
+
+            <div class="bmc" [ngStyle]="{'opacity':this.Validation ? 1 : 0.3}" (click)="isValSelected()">
+
+                <div class="bmc-align-rows" id="bmcCanvas">
+                    <div class="bmc-row-1">
+                        <div class="top-bmc-box bmc-white-box bmc-inner-col">
+                            <div class="bmc-header"><b>KEY PARTNERS</b></div>
+                            <div class="overflow-y">
+                                <div *ngFor="let KP of KPCol " class="content-spacing">
+                                    <!-- <div class="smallfont"> Added by: <b>{{KP.addedBy}}</b></div> -->
+                                    <!-- <div [attr.id]="KP.ID" class="bmc-white-box" id="drag1" style="display:flex" (click)="open(rating, KP.content, KP.ID, 'KP')"> -->
+                                    <div [attr.id]="KP.ID" class="bmc-white-box" style="display:flex" [ngStyle]="{'background': isSelected(KP.ID)? this.cardColor : '#fff'}" (click)="linkBMC(KP.ID, 'KP')">
+
+                                        <!-- content -->
+                                        <div class="content-box">{{KP.content}}</div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="top-bmc-box bmc-inner-col">
+                            <div style="height: 100%; margin-bottom: 0.5em;" class="bmc-white-box bmc-inner-col">
+
+                                <div class="bmc-header"> <b>KEY ACTIVITIES</b></div>
+                                <div class="overflow-y">
+                                    <div *ngFor="let KA of KACol" class="content-spacing">
+
+                                        <div [attr.id]="KA.ID" class="bmc-white-box" style="display:flex" [ngStyle]="{'background': isSelected(KA.ID)? this.cardColor : '#fff'}" (click)="linkBMC(KA.ID, 'KA')">
+
+                                            <!-- content -->
+                                            <div class="content-box">{{KA.content}}</div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div style="height: 100%;" class="bmc-white-box bmc-inner-col">
+
+                                <div class="bmc-header"> <b>KEY RESOURCES</b></div>
+                                <div class="overflow-y">
+                                    <div *ngFor="let KR of KRCol " class="content-spacing">
+
+                                        <div [attr.id]="KR.ID" class="bmc-white-box" style="display:flex" [ngStyle]="{'background': isSelected(KR.ID)? this.cardColor : '#fff'}" (click)="linkBMC(KR.ID, 'KR')">
+
+                                            <!-- content -->
+                                            <div class="content-box">{{KR.content}}</div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="top-bmc-box bmc-white-box bmc-inner-col">
+                            <div class="bmc-header"><b>VALUE PROPOSITIONS</b></div>
+                            <div class="overflow-y">
+                                <div *ngFor="let VP of VPCol " class="content-spacing">
+
+                                    <div [attr.id]="VP.ID" class="bmc-white-box" style="display:flex" [ngStyle]="{'background': isSelected(VP.ID)? this.cardColor : '#fff'}" (click)="linkBMC(VP.ID, 'VP')">
+
+                                        <!-- content -->
+                                        <div class="content-box">{{VP.content}}</div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="top-bmc-box bmc-inner-col">
+                            <div style="height: 100%;margin-bottom: 0.5em;" class="bmc-white-box bmc-inner-col">
+
+                                <div class="bmc-header"><b>CUSTOMER RELATIONSHIPS</b></div>
+                                <div class="overflow-y">
+                                    <div *ngFor="let CR of CRCol" class="content-spacing">
+
+                                        <div [attr.id]="CR.ID" class="bmc-white-box" style="display:flex" [ngStyle]="{'background': isSelected(CR.ID)? this.cardColor : '#fff'}" (click)="linkBMC(CR.ID, 'CR')">
+
+                                            <!-- content -->
+                                            <div class="content-box">{{CR.content}}</div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div style="height: 100%;" class="bmc-white-box bmc-inner-col">
+
+                                <div class="bmc-header"><b>CHANNELS</b></div>
+                                <div class="overflow-y">
+                                    <div *ngFor="let CH of CHCol " class="content-spacing">
+
+                                        <div [attr.id]="CH.ID" class="bmc-white-box" style="display:flex" [ngStyle]="{'background': isSelected(CH.ID)? this.cardColor  : '#fff'}" (click)="linkBMC(CH.ID, 'CH')">
+
+                                            <!-- content -->
+                                            <div class="content-box">{{CH.content}}</div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="top-bmc-box bmc-white-box bmc-inner-col">
+                            <div class="bmc-header"><b>CUSTOMER SEGMENTS</b></div>
+                            <div class="overflow-y">
+                                <div *ngFor="let CS of CSCol " class="content-spacing">
+
+                                    <div [attr.id]="CS.ID" class="bmc-white-box" style="display:flex" [ngStyle]="{'background': isSelected(CS.ID)? this.cardColor  : '#fff'}" (click)="linkBMC(CS.ID, 'CS')">
+
+                                        <!-- content -->
+                                        <div class="content-box">{{CS.content}}</div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="bmc-row-2">
+                        <div class="btm-bmc-box bmc-inner-col bmc-white-box">
+
+                            <div class="bmc-header"><b>COST STRUCTURE</b></div>
+                            <div class="overflow-y">
+                                <div *ngFor="let Cost of CostCol " class="content-spacing">
+
+                                    <div [attr.id]="Cost.ID" class="bmc-white-box" style="display:flex" [ngStyle]="{'background': isSelected(Cost.ID)? this.cardColor : '#fff'}" (click)="linkBMC(Cost.ID, 'Cost')">
+
+                                        <!-- content -->
+                                        <div class="content-box">{{Cost.content}}</div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="btm-bmc-box bmc-inner-col bmc-white-box">
+
+                            <div class="bmc-header"><b>REVENUE STREAMS</b></div>
+                            <div class="overflow-y">
+                                <div *ngFor="let Rev of RevCol " class="content-spacing">
+
+                                    <div [attr.id]="Rev.ID" class="bmc-white-box" style="display:flex" [ngStyle]="{'background': isSelected(Rev.ID)? this.cardColor : '#fff'}" (click)="linkBMC(Rev.ID, 'Rev')">
+
+                                        <!-- content -->
+                                        <div class="content-box">{{Rev.content}}</div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</ng-template>
+<!-- <ng-template #rating let-c="close " let-d="dismiss ">
+    <div class="bmc-modal-box">
+        <div class="modal-header fireside-customised">
+            <h4 class="modal-title" id="modal-basic-title">Confirming Evidence</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        KEY INSIGHTS: {{this.EvidenceIS}} <br/>
+        <=> <br/>{{this.TypeName}}: {{this.contentValue}}<br/>
+            {{this.CanvasID}} {{this.Title}} {{this.UserName}} {{this.EvidenceID}} {{this.contentID}} {{this.contentValue}} {{this.contentType}}
+
+            <div class="rate">
+
+                <i class="far fa-frown-open" (click)="linkBMC('Disconfirming')"></i>
+                <i class="far fa-frown" (click)="linkBMC('Leaning Disconfirming')"></i>
+                <i class="far fa-meh" (click)="linkBMC('Neutral')"></i>
+                <i class="far fa-smile" (click)="linkBMC('Leaning Confirming')"></i>
+                <i class="far fa-grin" (click)="linkBMC('Confirming')"></i>
+      
+            </div>
+
+
+
+
+    </div>
+</ng-template> -->

@@ -1,0 +1,216 @@
+<div class="margin fade-in">
+    <div class="PGA-box">
+        <div class="PGA-title">{{Title}}
+            <div *ngIf="!mobile" id="metric-btn" class="metric-btn" (click)="openNav()">
+                <!--<i class="fa fa-exclamation-circle" aria-hidden="true"></i>-->Metrics
+            </div>
+            <div *ngIf="mobile" id="metric-btn-mobile" class="metric-btn" (click)="openMetric()"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Metrics
+            </div>
+        </div>
+
+
+        <div class="PGA-columns">
+
+            <!-- gain -->
+            <div class="PGA-mobile-scroll pgr-mobile-pad-left">
+                <div class="PGA-mobile-card">
+                    <div class="pgr-box-title">
+                        <div class="pgr-mobile-title-text">Gain
+                            <i class="fa fa-question-circle-o make-pointer" (mouseenter)="showToolTip('gain')" (mouseleave)="hideToolTip('gain')" aria-hidden="true"></i>
+                        </div>
+                        <div id="gainToolTipText" class="collapsible">Record a Gain when your product / service offers one specific value to users or customers.</div>
+                        <div id="gainError" class="collapsible warning-error">{{spamMsg}}</div>
+                        <div class="pgr-box-2 add-new">
+                            <div id='add-Gain-btn' (click)="addbtn('Gain')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i> Add new gain.</div>
+                            <div id='add-Gain-form' class="collapsible">
+                                <form [formGroup]="gainForm" class="form">
+                                    <textarea autocomplete="off" class='autoExpand' rows='1' formControlName="gain" name='Gain' id="Gain-form" (keydown.enter)="removebtn('Gain')"></textarea>
+                                    <i class="fa fa-plus-square-o" aria-hidden="true" (click)="removebtn('Gain')"></i>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="gainLength != 0" class="PGA-inner-box" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div *ngFor="let gain of gainCol | async " class="content-spacing">
+                            <div class="smallfont"> Added by: <b>{{gain.addedBy}}</b></div>
+                            <div [attr.id]="gain.ID" class="pgr-box-2" id="drag1">
+                                <div class="pga-score">
+                                    {{gain.score}}
+                                </div>
+
+                                <!-- thumbs -->
+                                <!-- <div class="pga-icon">
+                                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                                </div> -->
+                                <!-- content -->
+                                <div class="content-box">{{gain.content}}</div>
+                                <!-- edit -->
+                                <div class="edit-icon" (click)="showEditForm(gain,'Gain')">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </div>
+                                <!-- delete -->
+                                <div class="delete-icon" (click)="showDel(gain)" [attr.id]="gain.ID+'trashBtn'">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </div>
+                                <div [attr.id]="gain.ID+'delDiv'" class="collapsible-tick-cross">
+                                    <div class="delete-options">
+                                        <div [attr.id]="gain.ID+'delYes'" (click)="deleteItem(gain, 'gain')"><i class="fa fa-check delete-tick-icon" aria-hidden="true"></i> </div>
+                                        <div [attr.id]="gain.ID+'delNo'" (click)="hideDel(gain)"><i class="fa fa-times delete-cross-icon" aria-hidden="true"></i> </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div [attr.id]="gain.ID + 'editform'" class="collapsible">
+                                <form [formGroup]="editgainForm" class="form">
+                                    <textarea autocomplete="off" class='autoExpand' formControlName="editgain" name='editGain' (keydown.enter)="removeEditForm(gain,'Gain')"></textarea>
+                                    <div class="make-pointer">
+                                        <i class="fa fa-plus-square-o" aria-hidden="true" (click)="removeEditForm(gain,'Gain')"></i></div>
+                                </form>
+                                <div [attr.id]="gain.ID+'gainErrorInput'" class="collapsible warning-error">{{spamMsg}}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- inertia -->
+            <div class="PGA-mobile-scroll">
+                <div class="PGA-mobile-card">
+                    <div class="pgr-box-title">
+                        <div class="pgr-mobile-title-text">Inertia
+                            <i class="fa fa-question-circle-o make-pointer" (mouseenter)="showToolTip('inertia')" (mouseleave)="hideToolTip('inertia')" aria-hidden="true"></i>
+                        </div>
+                        <div id="inertiaToolTipText" class="collapsible"> Record an Inertia when there are additional obstacles and other considerations to take note of before users can fully enjoy your product / service.</div>
+                        <div id=""></div>
+                        <div id="inertiaError" class="collapsible warning-error">{{spamMsg}}</div>
+                        <div class="pgr-box-2 add-new">
+                            <div id='add-Inertia-btn' (click)="addbtn('Inertia')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i> Add new inertia.</div>
+                            <div id='add-Inertia-form' class="collapsible">
+                                <form [formGroup]="inertiaForm" class="form">
+                                    <textarea autocomplete="off" class='autoExpand' rows='1' formControlName="inertia" name='Inertia' id="Inertia-form" (keydown.enter)="removebtn('Inertia')"></textarea>
+                                    <i class="fa fa-plus-square-o" aria-hidden="true" (click)="removebtn('Inertia')"></i>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="inertiaLength != 0" class="PGA-inner-box" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div *ngFor="let inertia of inertiaCol | async " class="content-spacing">
+                            <div class="smallfont"> Added by: <b>{{inertia.addedBy}}</b></div>
+                            <div [attr.id]="inertia.ID" class="pgr-box-2" id="drag1">
+                                <div class="pga-score">
+                                    {{inertia.score}}
+                                </div>
+                                <!-- thumbs -->
+                                <!-- <div class="pga-icon">
+                                    <i class="fa fa-exclamation" aria-hidden="true"></i>
+                                </div> -->
+                                <!-- content -->
+                                <div class="content-box">{{inertia.content}}</div>
+                                <!-- edit -->
+                                <div class="edit-icon" (click)="showEditForm(inertia,'Inertia')">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </div>
+                                <!-- delete -->
+                                <div class="delete-icon" (click)="showDel(inertia)" [attr.id]="inertia.ID+'trashBtn'">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </div>
+                                <div [attr.id]="inertia.ID+'delDiv'" class="collapsible-tick-cross">
+                                    <div class="delete-options">
+                                        <div [attr.id]="inertia.ID+'delYes'" (click)="deleteItem(inertia, 'inertia')"><i class="fa fa-check delete-tick-icon" aria-hidden="true"></i> </div>
+                                        <div [attr.id]="inertia.ID+'delNo'" (click)="hideDel(inertia)"><i class="fa fa-times delete-cross-icon" aria-hidden="true"></i> </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div [attr.id]="inertia.ID + 'editform'" class="collapsible">
+                                <form [formGroup]="editinertiaForm" class="form">
+                                    <textarea autocomplete="off" formControlName="editinertia" name='editInertia' (keydown.enter)="removeEditForm(inertia,'Inertia')"></textarea>
+                                    <div class="make-pointer">
+                                        <i class="fa fa-plus-square-o" aria-hidden="true" (click)="removeEditForm(inertia,'Inertia')"></i></div>
+                                </form>
+                                <div [attr.id]="inertia.ID+'inertiaErrorInput'" class="collapsible warning-error">{{spamMsg}}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- pain -->
+            <div class="PGA-mobile-scroll pgr-mobile-pad-right">
+                <div class="PGA-mobile-card">
+                    <div class="pgr-box-title">
+                        <div class="pgr-mobile-title-text">Pain
+                            <i class="fa fa-question-circle-o make-pointer" (mouseenter)="showToolTip('pain')" (mouseleave)="hideToolTip('pain')" aria-hidden="true"></i>
+                        </div>
+                        <div id="painToolTipText" class="collapsible">Record a Pain when your users or customers have to overcome a certain barrier to use your product / service.</div>
+                        <div id="painError" class="collapsible warning-error">{{spamMsg}}</div>
+                        <div class="pgr-box-2 add-new">
+                            <div id='add-Pain-btn' (click)="addbtn('Pain')"> <i class="fa fa-plus-square-o" aria-hidden="true"></i> Add new pain.</div>
+                            <div id='add-Pain-form' class="collapsible">
+                                <form [formGroup]="painForm" class="form">
+                                    <textarea autocomplete="off" class='autoExpand' rows='1' formControlName="pain" name='Pain' id="Pain-form" (keydown.enter)="removebtn('Pain')"></textarea>
+                                    <i class="fa fa-plus-square-o" aria-hidden="true" (click)="removebtn('Pain')"></i>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="painLength != 0" class="PGA-inner-box" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <div *ngFor="let pain of painCol | async " class="content-spacing">
+                            <div class="smallfont"> Added by: <b>{{pain.addedBy}}</b></div>
+                            <div [attr.id]="pain.ID" class="pgr-box-2" id="drag1">
+                                <div class="pga-score">
+                                    {{pain.score}}
+                                </div>
+
+                                <!-- thumbs -->
+                                <!-- <div class="pga-icon">
+                                    <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                                </div> -->
+                                <!-- content -->
+                                <div class="content-box">{{pain.content}}</div>
+                                <!-- edit -->
+                                <div class="edit-icon" (click)="showEditForm(pain,'Pain')">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </div>
+                                <!-- delete -->
+                                <div class="delete-icon" (click)="showDel(pain)" [attr.id]="pain.ID+'trashBtn'">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </div>
+                                <div [attr.id]="pain.ID+'delDiv'" class="collapsible-tick-cross">
+                                    <div class="delete-options">
+                                        <div [attr.id]="pain.ID+'delYes'" (click)="deleteItem(pain, 'pain')"><i class="fa fa-check delete-tick-icon" aria-hidden="true"></i> </div>
+                                        <div [attr.id]="pain.ID+'delNo'" (click)="hideDel(pain)"><i class="fa fa-times delete-cross-icon" aria-hidden="true"></i> </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div [attr.id]="pain.ID + 'editform'" class="collapsible">
+                                <form [formGroup]="editpainForm" class="form">
+                                    <textarea autocomplete="off" formControlName="editpain" name='editPain' (keydown.enter)="removeEditForm(pain,'Pain')"></textarea>
+                                    <div class="make-pointer">
+                                        <i class="fa fa-plus-square-o" aria-hidden="true" (click)="removeEditForm(pain,'Pain')"></i></div>
+                                </form>
+                                <div [attr.id]="pain.ID+'painErrorInput'" class="collapsible warning-error">{{spamMsg}}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="metric-box" id="myDiv">
+        <div id="mobileMetricCol" class="metric-column">
+            <div *ngIf="!mobile">
+                <i class="fa fa-times close-metrics-icon" aria-hidden="true" (click)="closeNav()"></i></div>
+            <div class="metric-scroll">
+                <div class="metrics-header"> Metrics </div>
+                <app-gainpainratio [GainVal]="gainLength" [PainVal]="painLength" [GainAnalysis]="gainAnalysis" [PainAnalysis]="painAnalysis"></app-gainpainratio>
+
+            </div>
+        </div>
+    </div>
+</div>

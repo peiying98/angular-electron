@@ -1,0 +1,154 @@
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.lds-ellipsis div {
+    position: absolute;
+    top: 27px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #11264b;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+    left: 6px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+    left: 6px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+    left: 26px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+    left: 45px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+
+.section-box {
+    margin: auto;
+    padding: 3em;
+    width: calc(100vw - 21em)
+}
+
+.section {
+    margin-bottom: 1em
+}
+
+.fa {
+    margin-right: 1px;
+    }
+
+.fa-exclamation-circle{
+    margin-right: 5px;
+    color: #000000;
+    }
+
+.prompt {
+    padding: 5px;
+}
+
+.idea-title-box {
+    background: white;
+    padding: 1em; 
+    border: 1px solid #28324b59;
+    font-size: 1.5em;
+    border-radius: 3px;
+    /* box-shadow: 0 0 20px -3px rgba(0,0,0,.24); */
+}
+
+.problem-statement-box {
+    background: white;
+    padding: 1em; 
+    border: 1px solid #28324b59;
+    font-size: 1.5em;
+    border-radius: 3px;
+    /* box-shadow: 0 0 20px -3px rgba(0,0,0,.24); */
+}
+
+.notes-box {
+    background: white;
+    padding: 1em; 
+    border: 1px solid #28324b59;
+    font-size: 1.5em;
+    border-radius: 3px;
+    /* box-shadow: 0 0 20px -3px rgba(0,0,0,.24); */
+}
+
+.form {
+    width :100%;
+    outline:none; 
+    border: none; 
+    background: none; 
+    border-bottom: 3px dotted #11264b;
+}
+
+.lets-start {
+    display:flex;
+    justify-content: center; 
+    text-align: center;
+}
+
+.lets-start-btn {
+    margin-top:2em; 
+    padding: 1em; 
+    border-radius: 5em; 
+    background-color: #28324b; 
+    color: white; 
+    cursor:pointer; 
+    width:200px
+}
+
+.lets-start-btn:hover {
+    transition-duration: 0.5s;
+    background-color: #28324bb0;
+}
+
+.loading {
+    position: absolute; 
+    top: 40%; 
+    left: 55%;
+}
+
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(19px, 0);
+    }
+}
+
+@media(max-width:800px) {
+    .section-box {
+        width: 100vw;
+    }
+}

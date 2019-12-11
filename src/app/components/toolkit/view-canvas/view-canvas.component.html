@@ -1,0 +1,317 @@
+<!-- <script src="./../../../../../node_modules/chart.js/dist/Chart.js"></script> -->
+
+<body>
+    <div class="margin fade-in">
+
+        <div class="bmc">
+            <div style="display: flex; margin-top: 1em; margin-bottom: 1em;">
+
+                <div class="bmc-title">
+                    <i class="fas fa-share-alt" style="margin-top: auto;margin-bottom: auto; cursor:pointer" (click)="copyLink()">
+                                <span class="tooltiptext" id="copyClipboard" >Share Link</span>
+                        </i> {{ Title}}
+                    <div *ngIf="this.numAnomV + this.numRegV">{{this.numAnomV + this.numRegV}}
+                        <i class="fas fa-eye">
+                      <span class="tooltiptext" *ngIf="this.numAnomV + this.numRegV === 1">{{this.numAnomV + this.numRegV}} View</span>
+                      <span class="tooltiptext" *ngIf="this.numAnomV + this.numRegV > 1">{{this.numAnomV + this.numRegV}} Views</span>
+              </i>
+                    </div>
+
+                </div>
+                <div *ngIf="this.participantsList && this.participantsList.includes(this.userid) && !mobile" class="edit-btn" (click)="goWorkspace()">
+                    <!--<i class="fa fa-exclamation-circle" aria-hidden="true"></i>-->Edit
+                </div>
+
+
+            </div>
+
+            <div class="bmc-align-rows" id="bmcCanvas">
+
+                <div class="bmc-width">
+                    <div class="bmc-row-1">
+                        <div class="top-bmc-box bmc-inner-col">
+                            <div class="bmc-header"><b>KEY PARTNERS ({{this.KPLength}})</b></div>
+                            <div class="bmc-bg-white-box bmc-inner-col">
+
+
+                                <div id="KP" class="overflow-y">
+
+                                    <div *ngFor="let KP of KPCol" class="content-spacing">
+                                        <!-- <div class="smallfont"> Added by: <b>{{KP.addedBy}}</b></div> -->
+                                        <div [attr.id]="KP.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                            <!-- content -->
+                                            <div class="content-box" (click)="open(content, KP, KP.ID, 'KP')">{{KP.content}}</div>
+
+
+                                            <!-- delete -->
+                                            <!-- <div [attr.id]="'KP-edit-'+KP.ID">
+                                  <i class="fa fa-cross" aria-hidden="true" (click)="delete(KP.ID,'KP')"></i>
+                              </div> -->
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="top-bmc-box bmc-inner-col">
+                            <div class="bmc-header"> <b>KEY ACTIVITIES ({{this.KALength}})</b></div>
+                            <div style="height: 100%; margin-bottom: 0.5em;" class="bmc-bg-white-box bmc-inner-col">
+
+
+                                <div id="KA" class="overflow-y">
+                                    <div *ngFor="let KA of KACol  " class="content-spacing">
+
+                                        <div [attr.id]="KA.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                            <!-- content -->
+                                            <div class="content-box" (click)="open(content, KA, KA.ID, 'KA')">{{KA.content}}</div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="bmc-header"> <b>KEY RESOURCES ({{this.KRLength}})</b></div>
+                            <div style="height: 100%;" class="bmc-bg-white-box bmc-inner-col">
+
+
+                                <div id="KR" class="overflow-y">
+                                    <div *ngFor="let KR of KRCol  " class="content-spacing">
+
+                                        <div [attr.id]="KR.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                            <!-- content -->
+                                            <div class="content-box" (click)="open(content, KR, KR.ID, 'KR')">{{KR.content}}</div>
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="top-bmc-box bmc-inner-col">
+                            <div class="bmc-header"><b>VALUE PROPOSITIONS ({{this.VPLength}})</b></div>
+                            <div class=" bmc-bg-white-box bmc-inner-col">
+
+                                <div id="VP" class="overflow-y">
+                                    <div *ngFor="let VP of VPCol  " class="content-spacing">
+
+                                        <div [attr.id]="VP.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                            <!-- content -->
+                                            <div class="content-box" (click)="open(content, VP, VP.ID, 'VP')">{{VP.content}}</div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="top-bmc-box bmc-inner-col">
+                            <div class="bmc-header"><b>CUSTOMER RELATIONSHIPS ({{this.CRLength}})</b></div>
+                            <div style="height: 100%;margin-bottom: 0.5em;" class="bmc-bg-white-box bmc-inner-col">
+
+
+                                <div id="CR" class="overflow-y">
+                                    <div *ngFor="let CR of CRCol  " class="content-spacing">
+
+                                        <div [attr.id]="CR.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                            <!-- content -->
+                                            <div class="content-box" (click)="open(content, CR, CR.ID, 'CR')">{{CR.content}}</div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="bmc-header"><b>CHANNELS ({{this.CHLength}})</b></div>
+                            <div style="height: 100%;" class="bmc-bg-white-box bmc-inner-col">
+
+
+                                <div id="CH" class="overflow-y">
+                                    <div *ngFor="let CH of CHCol  " class="content-spacing">
+
+                                        <div [attr.id]="CH.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                            <!-- content -->
+                                            <div class="content-box" (click)="open(content, CH, CH.ID, 'CH')">{{CH.content}}</div>
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="top-bmc-box bmc-inner-col">
+                            <div class="bmc-header"><b>CUSTOMER SEGMENTS ({{this.CSLength}})</b></div>
+                            <div class="bmc-bg-white-box bmc-inner-col">
+
+                                <div id="CS" class="overflow-y">
+                                    <div *ngFor="let CS of CSCol  " class="content-spacing">
+
+                                        <div [attr.id]="CS.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                            <!-- content -->
+                                            <div class="content-box" (click)="open(content, CS, CS.ID, 'CS')">{{CS.content}}</div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bmc-row-2">
+                        <div class="btm-bmc-box bmc-inner-col">
+                            <div class="bmc-header"><b>COST STRUCTURE ({{this.CostLength}})</b></div>
+                            <div class=" bmc-inner-col bmc-bg-white-box">
+
+
+                                <div id="Cost" class="overflow-y">
+                                    <div *ngFor="let Cost of CostCol  " class="content-spacing">
+
+                                        <div [attr.id]="Cost.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                            <!-- content -->
+                                            <div class="content-box" (click)="open(content, Cost, Cost.ID, 'Cost')">{{Cost.content}}</div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="btm-bmc-box bmc-inner-col">
+                            <div class="bmc-header"><b>REVENUE STREAMS ({{this.RevLength}})</b></div>
+                            <div class="bmc-inner-col bmc-bg-white-box">
+
+
+                                <div id="Rev" class="overflow-y">
+                                    <div *ngFor="let Rev of RevCol  " class="content-spacing">
+
+                                        <div [attr.id]="Rev.ID" class="bmc-white-box" id="drag1" style="display:flex">
+
+                                            <!-- content -->
+                                            <div class="content-box" (click)="open(content, Rev, Rev.ID, 'Rev')">{{Rev.content}}</div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bmc-credits" class="credits">This work is licensed under the Creative Commons Attributions – Share Alike 3.0 Unported license. To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank">http://creativecommons.org/licenses/by-sa/3.0/</a>                    or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.</div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <ng-template #content let-c="close " let-d="dismiss ">
+
+        <div class="bmc-modal-box">
+
+            <div class="modal-header fireside-customised">
+                <div style="width:100%">
+                    <div class="display-flex" id="modal">
+                        <h4 class="modal-title"> {{this.titleContent}}</h4>
+                        <!-- edit -->
+                        <div class="edit-icon-desc">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </div>
+
+                    </div>
+
+                    <h6 style="text-align: start;margin-top: 1em;"> by {{this.object.addedBy}}</h6>
+                    <br/>
+                </div>
+
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+
+            <!-- {{this.CanvasID}} {{this.Title}} {{this.UserName}} {{this.EvidenceID}} {{this.contentID}} {{this.contentValue}} {{this.contentType}} -->
+
+
+            <ngb-tabset>
+                <ngb-tab title="Description">
+                    <ng-template ngbTabContent>
+                        <div style="padding: 1em;">
+                            <div id="desc" class="bmc-bg-white-box" style="display:flex; height: 6em;">
+                                <!-- content -->
+                                <div *ngIf="!this.desc" class="content-box">N/A</div>
+                                <div *ngIf="this.desc" class="content-box">{{this.desc}}</div>
+
+
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Evidence ({{this.numEvidences}})">
+                    <ng-template ngbTabContent>
+                        <div style="padding: 2em;" *ngIf="!this.isLoggedin">
+                            <div *ngIf="!mobile" class="access-btn" (click)="loginNow()">
+                                <i class="fas fa-lock"></i> Sign in to access data
+                            </div>
+                            <div *ngIf="mobile" class="access-btn" (click)="loginNow()">
+                                <i class="fas fa-lock"></i> Sign in to access data
+                            </div>
+                        </div>
+                        <div style="padding: 2em;" *ngIf="!this.numEvidences && this.isLoggedin">
+                            There is no evidence linked to this hypothesis.
+
+                        </div>
+
+                        <app-bmc-charts *ngIf="this.numEvidences && this.isLoggedin" [CanvasID]="this.CanvasID" [Title]='this.Title' [UserName]="this.UserName " [type]="this.objectType" [typeID]="this.objectID" [numD]="this.numD" [numLD]="this.numLD" [numN]="this.numN" [numLC]="this.numLC"
+                            [numC]="this.numC"></app-bmc-charts>
+
+
+
+                    </ng-template>
+                </ngb-tab>
+                <!-- <ngb-tab title="Activity">
+                      <ng-template ngbTabContent>
+                          <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+                              synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                      </ng-template>
+                  </ngb-tab> -->
+
+            </ngb-tabset>
+
+
+
+
+        </div>
+
+    </ng-template>
+</body>

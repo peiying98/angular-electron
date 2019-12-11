@@ -1,0 +1,7 @@
+{
+  "name": "Pitchspot",
+  "short_name": "Pitchspot",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}

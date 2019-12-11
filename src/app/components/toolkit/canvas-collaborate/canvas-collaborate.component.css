@@ -1,0 +1,67 @@
+.margin {
+    margin-bottom: 1em;
+}
+
+.title {
+    padding: 0.25em;
+    margin-bottom: 0.5em;
+}
+
+.box {
+    padding: 1em;
+    padding-left: 24px;
+    background: white;
+    border: 1px solid #28324b59;
+    border-radius: 3px;
+    font-size: 2em;
+    /* box-shadow: 0 0 20px -3px rgba(0,0,0,.24); */
+}
+
+.justify {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 3px dotted #11264b;
+}
+
+.collab-btn {
+    background: #11264b;
+    padding: 1em;
+    width: 10em;
+    color: white;
+    margin: 0.5em;
+    margin-left: auto;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.collab-btn:hover {
+    background: #475164;
+    transition-duration: 0.2s;
+}
+
+.empty-collab {
+    background: white;
+    padding: 1em;
+    border: 1px solid #28324b59;
+    border-radius: 3px;
+    box-shadow: 0 0 20px -3px rgba(0, 0, 0, .24);
+    text-align: center;
+    font-size: 1em;
+}
+
+.got-collab {
+    background: white;
+    padding: 1em;
+    border: 1px solid #28324b59;
+    border-radius: 3px;
+    box-shadow: 0 0 20px -3px rgba(0, 0, 0, .24);
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}

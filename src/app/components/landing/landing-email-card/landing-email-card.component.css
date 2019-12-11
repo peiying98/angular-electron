@@ -1,0 +1,134 @@
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: hidden;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+.myBtn {
+    padding: 0.5em 1em;
+    color: white;
+    background: #11264b;
+    margin: auto;
+    cursor: pointer;
+    margin-right: 0.5em;
+    text-decoration: none;
+    border-radius: 0.5em;
+    display: none;
+}
+
+
+/* Modal Content/Box */
+
+.modal-content {
+    margin: 7% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    width: 50%;
+    color: #28324b;
+    background: #f1f6f8;
+    border-radius: none !important;
+    text-align: center;
+    /* Could be more or less, depending on screen size */
+    /* animation */
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+.formHeader {
+    margin-bottom: 1em;
+}
+
+@-webkit-keyframes slideIn {
+    from {
+        bottom: -300px;
+        opacity: 0
+    }
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+@keyframes slideIn {
+    from {
+        bottom: -300px;
+        opacity: 0
+    }
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}
+
+
+/* The Close Button */
+
+.close {
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: auto;
+}
+
+.close:hover,
+.close:focus {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    .modal-content {
+        width: 100%;
+    }
+}
+
+@media (max-width: 425px) {
+    .myBtn {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-height: 610px) {
+    .formHeader {
+        font-size: 1.3em;
+    }
+    .modal {
+        overflow-y: scroll;
+    }
+}
+
+.view-full {
+    background: #28324b;
+    color: white;
+    padding: 0.5em;
+    transition-duration: 0.25s;
+    cursor: pointer;
+    margin: 0.1em;
+    margin-bottom: 0.25em;
+    border-radius: 5px;
+}
+
+.view-full:hover {
+    background: #4c5d6e;
+}
+
+
+/*  */

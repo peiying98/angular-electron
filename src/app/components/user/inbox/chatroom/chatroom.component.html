@@ -1,0 +1,167 @@
+<div *ngIf="!mobile">
+    <div class=" box fade-in" *ngIf="UserData  as user" style="padding-top: 5em; min-width: 1024px;">
+        <div class="menu-collumn">
+            <!-- <div class="" [ngStyle]="{'background-image': 'url(' + user.profileImg + ')'}">&nbsp;</div> -->
+            <!-- <div class="edit-header">
+            <div class="back-button" routerLink="/inbox">Return to Inbox</div>
+            <div class="pitch-title">Pitchspot by Zufar</div>
+        </div> -->
+            <div class="edit-box">
+                <div class="user-profile">
+                    <div *ngIf="otherUserDataImg" class="user-img" [ngStyle]="{'background-image': 'url(' + otherUserDataImg+ ')'}">&nbsp;</div>
+                    <div *ngIf="!otherUserDataImg" class="user-img" [ngStyle]="{'background-image': 'url( ../../../assets/images/navbar-logo-2.png)'}">&nbsp;</div>
+
+                    <div class="user-name"> {{otherUserDataName}}</div>
+                    <div class="user-nav" routerLink="/user/{{otherUserID}}"> View profile</div>
+                    <!-- <div class="user-nav" routerLink="/edit-profile"> Edit Profile</div> -->
+                </div>
+            </div>
+            <div class="" style="margin-top:2em;">
+                <div style="  width: 100%;
+            text-align: center;
+            border-bottom: 1px solid #dce0e0;
+            line-height: 0.1em;">
+                    <span class="word">Chat Information</span>
+                </div>
+                <div class="tip-content" style="margin-top:1em;">
+                    You are now chatting with {{otherUserDataName}}.<br/> We hope you have a fruitful conversation.
+                </div>
+            </div>
+        </div>
+        <div class="edit-collumn">
+            <div class="edit-section">
+
+                <!-- Sending message form -->
+                <div class="send-message-section">
+                    <form [formGroup]="sendMessageForm" class="chat-container send-message-container">
+                        <textarea formControlName="message" id="msgInput" (keydown.enter)="sendMessage()"></textarea>
+                        <div class="chat-button-box">
+                            <span class="errorlog">{{errorMessage}}</span>
+                            <div class="chat-button" (click)="sendMessage()">Send Message</div>
+                        </div>
+                    </form>
+                    <div *ngIf="user.profileImg" class="user-img-message" [ngStyle]="{'background-image': 'url(' + user.profileImg + ')'}">&nbsp;</div>
+                    <div *ngIf="!user.profileImg" class="user-img-message" [ngStyle]="{'background-image': 'url( ../../../assets/images/navbar-logo-2.png)'}">&nbsp;</div>
+                </div>
+                <div class="" style="margin-top:3em;">
+                    <div class="line">
+                        <span class="word">Pitchspot's Tip</span>
+                    </div>
+                    <div class="tip-content">
+                        For your safety and protection, only communicate through Pitchspot. <br/>Do not give out sensitive information regarding yourself.
+                    </div>
+                </div>
+                <div *ngFor="let message of messages | async">
+                    <div class="each-message">
+                        <div class="user-image-col">
+                            <div class="pitchspotUser-img-message" *ngIf="message.senderID !== user.uid && !message.senderPhoto" [ngStyle]="{'background-image': 'url( ../../../assets/images/navbar-logo-2.png)'}"></div>
+                            <div class="user-img-message" *ngIf="message.senderID !== user.uid && message.senderPhoto" [ngStyle]="{'background-image':  'url(' + message.senderPhoto+ ')'}"></div>
+                            <div class="chatwith-name" *ngIf="message.senderID !== user.uid" routerLink="/user/{{message.senderID}}">{{message.senderName}}</div>
+                        </div>
+                        <div class="chat-container send-message-container " *ngIf="message.senderID == user.uid">
+                            <!-- CURRENT USER CHAT MESSAGE -->
+                            <div class="each-chat-box">
+                                <div class="chat-col-2">
+                                    <div class="chat-recent">{{message.content}}</div>
+                                    <div class="chat-time">{{message.timestamp | date:'medium'}} </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-container otheruser-send-message-container " *ngIf="message.senderID !== user.uid">
+                            <!-- OTHER USER CHAT MESSAGE -->
+                            <div class="each-chat-box">
+                                <div class="chat-col-2">
+                                    <div class="chat-recent">{{message.content}}</div>
+                                    <div class="chat-time">{{message.timestamp | date:'medium'}} </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-image-col">
+                            <div class="user-img-message" *ngIf="message.senderID == user.uid && !user.profileImg " [ngStyle]="{'background-image': 'url( ../../../assets/images/navbar-logo-2.png)'}"></div>
+                            <div class="user-img-message" *ngIf="message.senderID == user.uid && user.profileImg" [ngStyle]="{'background-image':  'url(' + user.profileImg + ')'}"></div>
+                            <div class="chatwith-name" *ngIf="message.senderID == user.uid">{{user.firstName}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Mobile -->
+
+<div *ngIf="mobile">
+    <div class="  fade-in" *ngIf="UserData  as user" style="padding-top: 5em;    font-family: 'Montserrat'; ">
+
+        <div class="edit-collumn" style="width:80% !important;">
+            <div class="edit-section">
+                <div class="" style="margin-top:2em;">
+                    <div style=" 
+                            text-align: center;
+                            border-bottom: 1px solid #dce0e0;
+                            line-height: 0.1em;">
+                        <span class="word">Chat Information</span>
+                    </div>
+                    <div class="tip-content" style="margin-top:1em;">
+                        You are now chatting with {{otherUserDataName}}.<br/> We hope you have a fruitful conversation.
+                    </div>
+                    <div style="margin-bottom: 1em;">
+                        <div *ngIf="otherUserDataImg" class="user-img" [ngStyle]="{'background-image': 'url(' + otherUserDataImg+ ')'}" style="height: 5em !important; width: 5em !important;">&nbsp;</div>
+                        <div *ngIf="!otherUserDataImg" class="user-img" [ngStyle]="{'background-image': 'url( ../../../assets/images/navbar-logo-2.png)'}" style="height: 5em !important; width: 5em !important;">&nbsp;</div>
+                    </div>
+                </div>
+                <!-- Sending message form -->
+                <div class="send-message-section">
+                    <form [formGroup]="sendMessageForm" class="chat-container send-message-container" style="width:100% !important;">
+                        <textarea formControlName="message" id="msgInput" (keydown.enter)="sendMessage()"></textarea>
+                        <div class="chat-button-box">
+                            <span class="errorlog">{{errorMessage}}</span>
+                            <div class="chat-button" (click)="sendMessage()">Send Message</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="" style="margin-top:3em;">
+                    <div class="line">
+                        <span class="word">Pitchspot's Tip</span>
+                    </div>
+                    <div class="tip-content">
+                        For your safety and protection, only communicate through Pitchspot. <br/>Do not give out sensitive information regarding yourself.
+                    </div>
+                </div>
+                <div *ngFor="let message of messages | async">
+                    <div class="each-message">
+                        <div class="user-image-col">
+                            <div class="pitchspotUser-img-message" *ngIf="message.senderID !== user.uid && !message.senderPhoto" [ngStyle]="{'background-image': 'url( ../../../assets/images/navbar-logo-2.png)'}" style="width:3em !important;height:3em;"></div>
+                            <div class="user-img-message" *ngIf="message.senderID !== user.uid && message.senderPhoto" [ngStyle]="{'background-image':  'url(' + message.senderPhoto+ ')'}" style="width:3em !important;height:3em;"></div>
+                            <div class="chatwith-name" *ngIf="message.senderID !== user.uid" routerLink="/user/{{message.senderID}}">{{message.senderName}}</div>
+                        </div>
+                        <div class="chat-container send-message-container " *ngIf="message.senderID == user.uid">
+                            <!-- CURRENT USER CHAT MESSAGE -->
+                            <div class="each-chat-box">
+                                <div class="chat-col-2">
+                                    <div class="chat-recent">{{message.content}}</div>
+                                    <div class="chat-time">{{message.timestamp | date:'medium'}} </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-container otheruser-send-message-container " *ngIf="message.senderID !== user.uid">
+                            <!-- OTHER USER CHAT MESSAGE -->
+                            <div class="each-chat-box">
+                                <div class="chat-col-2">
+                                    <div class="chat-recent">{{message.content}}</div>
+                                    <div class="chat-time">{{message.timestamp | date:'medium'}} </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-image-col">
+                            <div class="user-img-message" *ngIf="message.senderID == user.uid && !user.profileImg " [ngStyle]="{'background-image': 'url( ../../../assets/images/navbar-logo-2.png)'}" style="width:3em !important;height:3em;"></div>
+                            <div class="user-img-message" *ngIf="message.senderID == user.uid && user.profileImg" [ngStyle]="{'background-image':  'url(' + user.profileImg + ')'}" style="width:3em !important;height:3em;"></div>
+                            <div class="chatwith-name" *ngIf="message.senderID == user.uid">{{user.firstName}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

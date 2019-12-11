@@ -1,0 +1,130 @@
+textarea {
+    width: 100%;
+    border: 1px solid #11264b;
+    outline: none;
+    border-radius: 3px;
+    padding: 10px;
+    background: white;
+    box-shadow: 0 0 10px -3px rgba(0, 0, 0, .24);
+}
+
+.margin-bottom {
+    margin-bottom: 1em;
+}
+
+.form {
+    display: flex;
+    width: 100%;
+}
+
+.collapsible {
+    display: none;
+}
+
+.title {
+    padding: 0.25em;
+    margin-bottom: 0.5em;
+}
+
+.box {
+    background: white;
+    padding: 1em;
+    padding-left: 24px;
+    border: 1px solid #28324b59;
+    border-radius: 3px;
+    box-shadow: 0 0 20px -3px rgba(0, 0, 0, .24);
+    font-size: 2em;
+    height: auto;
+    cursor: pointer;
+}
+
+.edit-box {
+    background: white;
+    padding: 1em;
+    padding-left: 24px;
+    border: 1px solid #28324b59;
+    border-radius: 3px;
+    box-shadow: 0 0 20px -3px rgba(0, 0, 0, .24);
+    font-size: 2em;
+    cursor: text;
+}
+
+.ps-box {
+    background: white;
+    border-radius: 3px;
+    border: 1px solid #28324b59;
+    padding: 1em;
+    padding-left: 24px;
+    box-shadow: 0 0 20px -3px rgba(0, 0, 0, .24);
+    font-size: 1.5em;
+    overflow-wrap: break-word;
+    height: auto;
+    cursor: pointer;
+}
+
+.edit-ps-box {
+    background: white;
+    border-radius: 3px;
+    border: 1px solid #aec0ee59;
+    padding: 1em;
+    padding-left: 24px;
+    box-shadow: 0 0 20px -3px rgba(0, 0, 0, .24);
+    font-size: 1.5em;
+    overflow-wrap: break-word;
+    cursor: text;
+}
+
+.box:hover {
+    background: #f7f7f7;
+    border-radius: 3px;
+    border: 1px solid #28324b59;
+    padding: 1em;
+    padding-left: 24px;
+    box-shadow: 0 0 20px -3px rgba(0, 0, 0, .24);
+    overflow-wrap: break-word;
+    height: auto;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.ps-box:hover {
+    background: #f7f7f7;
+    border-radius: 3px;
+    border: 1px solid #28324b59;
+    padding: 1em;
+    padding-left: 24px;
+    box-shadow: 0 0 20px -3px rgba(0, 0, 0, .24);
+    overflow-wrap: break-word;
+    height: auto;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black;
+}

@@ -1,0 +1,432 @@
+<!-- <link rel="stylesheet" href="/src/assets/fonts/avenir/AvenirLTStd-Black.otf">
+<link rel="stylesheet" href="/src/assets/fonts/avenir/AvenirLTStd-Book.otf">
+<link rel="stylesheet" href="/src/assets/fonts/avenir/AvenirLTStd-Roman.otf"> -->
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Avenir" crossorigin="anonymous"> -->
+<div class="fade-in toolkit" id="toolkit-signin">
+    <!-- Navbar -->
+    <div class="topnav" id="myTopnav">
+        <div class="d-md-flex navbar-container justify-content-between flex-md-equal">
+            <a class="navbar-bulb" (click)="scrollDown('toolkit-signin') ">
+                <img id="blue-banner" src="/assets/images/Pitchspot Banner 050418.png" height="20" alt="Pitchspot">
+                <img id="white-banner" src="/assets/images/Pitchspot-white.png" height="25" alt="Pitchspot">
+            </a>
+
+            <ul class=" navbar-nav ">
+                <li class="nav-item ">
+                    <a class="nav-title " href="javascript:void(0); " (click)="scrollDown('summary') ">Why Pitchspot?</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-title " href="javascript:void(0); " (click)="scrollDown('features') ">Features</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-title " href="javascript:void(0); " (click)="scrollDown('testimonial') ">Testimonials</a>
+                </li>
+
+                <!-- <li class="nav-item">
+                        <a class="nav-title" target="_blank" href="https://medium.com/pitchspot">Blog</a>
+                    </li> -->
+                <!-- <li class="nav-item ">
+                            <a class="nav-title " href="javascript:void(0); " (click)="scrollDown('summary') ">Why Pitchspot?</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-title " href="javascript:void(0); " (click)="scrollDown('features') ">Features</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-title " href="/enterprise ">Enterprise</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-title " href="https://medium.com/@pitchspot ">Blog</a>
+                        </li> -->
+            </ul>
+            <!-- <a class="header-text-style header-text-style:hover " href="/about " target="_blank ">About</a>
+                        <a class="header-text-style header-text-style:hover " href="https://medium.com/@pitchspot " target="_blank ">Medium</a> -->
+
+            <div class="nav-align ">
+                <!--todo Hardcoded part-->
+                <a class="getstarted-btn" href="javascript:void(0);" id="scheduleDemo">Schedule a Demo</a>
+                <!-- <span class="getstarted-btn" >Schedule a Demo</span> -->
+                <!-- <a class="mobile-resp-login ">
+                            <form [formGroup]="loginForm ">
+                                <span class="d-md-flex ">
+                                <input class="login-input-field " placeholder="Email " formControlName="loginEmail " />
+                                <input id="login-pw " class="login-input-field " placeholder="Password " formControlName="loginPassword " type="password " (keyup.enter)="login() " />
+                                <div id="login-btn " class="login-btn " (click)=" login() ">Login</div>
+                                <div id="forgetPassword " class="forget-btn " (click)="forgetPassword() ">Reset</div>
+                            </span>
+                            </form>
+                            <div id="showforgetPassword " class="forgetpw-text-style header-text-style:hover ">Forgot Password?</div>
+                            <div id="showloginPassword " class="forgetpw-text-style header-text-style:hover ">Back to Login</div>
+                        </a> -->
+
+            </div>
+        </div>
+        <a href="javascript:void(0); " class="icon " id="hamburger-toggle">
+            <i class="fa fa-bars " id="fafabars"></i>
+            <i class="fa fa-times " id="fafatimes"></i>
+        </a>
+    </div>
+    <!-- Body -->
+    <div class="test-bg ">
+        <div class="hero-text ">
+            <div class="hero-header px-3 ">
+                <b>BUILD YOUR INNOVATION ECOSYSTEM</b>
+            </div>
+            <p class="section-2 px-3 container ">
+                <br>Customisable solutions to manage your portfolio startups / projects and host innovation events.</p>
+        </div>
+        <div class="space-button ">
+            <!--todo hardcoded part
+            <a class="white-button white-button:hover ">Schedule a Demo</a>
+          -->
+            <app-landing-email-card [index]="0"></app-landing-email-card>
+            <span class="white-button white-button:hover ">Schedule a Demo</span>
+        </div>
+        <div class="arrow-down">
+
+            <i class="fa fa-angle-double-down arrow-bounce" (click)="scrollDown('summary') "></i>
+        </div>
+
+    </div>
+
+    <!-- <img src="/assets/images/generic-graphic.png " class="hero-graphic " (click)="scrollDown() "/> -->
+
+</div>
+<!-- <div class="content-section d-md-flex flex-md-equal justify-content-center pl-md-3 ">
+                    <div class="d-flex col mobile-resp ">
+                        <div class="left-box ">
+        
+                        </div>
+                    </div>
+                    <div class="col mobile-hide ">
+                        <div class="right-box ">
+        
+                        </div>
+                    </div>
+                </div> -->
+<!-- <div class="arrow-down ">
+                    <i class="fa fa-angle-double-down arrow-bounce " (click)="scrollDown() "></i>
+                </div> -->
+
+
+<div>
+
+    <div class="box-4">
+
+        <p class="sub-header text-center"><b>TRUSTED BY THE WORLD'S MOST INNOVATIVE ORGANISATIONS</b></p>
+
+
+        <div class="container px-md-5 text-center overflow-hidden ">
+
+            <img src="/assets/images/easyship-white.png " class="logo ">
+            <img src="/assets/images/kinerjabisa-white.png " class="logo ">
+            <img src="/assets/images/nuse-white.png " class="logo ">
+            <img src="/assets/images/sia-white.png " class="logo ">
+            <img src="/assets/images/so-white.png " class="logo ">
+
+        </div>
+    </div>
+
+    <div class="box-4 " id="summary">
+        <div class="container header-3 px-3">
+            <b class="txt-green">CONNECT. DISRUPT. INNOVATE.</b>
+        </div>
+        <div class="container d-md-flex flex-md-equal w-100 pl-md-3 ">
+
+            <div class="align-mid ">
+                <div class="d-flex justify-content-center ">
+                    <img alt="Gain-Pain Ratio Canvas " class="product " src="/assets/images/Innovation.svg ">
+
+                </div>
+            </div>
+
+
+            <div class="px-5 text-center overflow-hidden align-mid ">
+                <div class="my-3 py-3 ">
+
+                    <div class="sub-header-3 "><b>DRIVE INNOVATION SEAMLESSLY</b></div>
+                    <div class="section-3-text px-2 "> Accelerate the growth of portfolio startups / projects through our industry standard innovation frameworks and canvases.
+                        <!-- <div class="learnmore ">
+                                    <a class="lm-community lm-community:hover " target="_blank " href="/login ">
+                                        Learn More</a>
+                                </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container d-md-flex flex-md-equal w-100 pl-md-3 flex-reverse ">
+
+            <div class="align-mid ">
+                <div class="d-flex justify-content-center ">
+                    <img alt="Gain-Pain Ratio Canvas " class="product " src="/assets/images/Customised.svg ">
+
+                </div>
+            </div>
+
+
+            <div class="px-5 text-center overflow-hidden align-mid ">
+                <div class="my-3 py-3 ">
+                    <div class="sub-header-3 "><b>CUSTOMISED TO YOUR NEEDS</b></div>
+                    <div class="section-3-text px-2 ">
+                        Stay on top of innovation by creating your own enterprise innovation ecosystem. We build white-label features to cater to your organisation's needs.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="container d-md-flex flex-md-equal w-100 pl-md-3 ">
+
+            <div class="align-mid ">
+                <div class="d-flex justify-content-center ">
+                    <img alt="Gain-Pain Ratio Canvas " class="product " src="/assets/images/Ecosystem.svg ">
+
+                </div>
+            </div>
+
+
+            <div class="px-5 text-center overflow-hidden align-mid ">
+                <div class="my-3 py-3 ">
+                    <div class="sub-header-3 "><b>INTEGRATED AND EXCLUSIVE</b></div>
+                    <div class="section-3-text px-2 ">Tap into our global network to source for startup solutions. Optimise logistical processes, cut operational costs by 5x, and reduce man-hours by half.
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-4 " id="features">
+        <div class="container header-3 px-3">
+            <b class="txt-green">KEY FEATURES</b>
+        </div>
+        <div class="container d-md-flex flex-md-equal w-100 pl-md-3 ">
+
+            <div class="align-mid ">
+                <div class="container d-md-flex w-100 pl-md-3 ">
+
+                    <div class="align-mid ">
+                        <div class="d-flex justify-content-center ">
+                            <img alt="Gain-Pain Ratio Canvas " class="feature-icon" src="/assets/images/infinity.svg ">
+
+                        </div>
+                    </div>
+
+
+                    <div class="px-5 overflow-hidden align-mid ">
+                        <div class="my-3 py-3 ">
+
+                            <div class="sub-header-3 "><b>UNLIMITED BANDWIDTH</b></div>
+                            <div class="key-features-text">Yield the best results with unlimited public and private canvases, with unlimited collaborators.
+                                <!-- <div class="learnmore ">
+                                                        <a class="lm-community lm-community:hover " target="_blank " href="/login ">
+                                                            Learn More</a>
+                                                    </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="align-mid ">
+                <div class="container d-md-flex w-100 pl-md-3 ">
+
+                    <div class="align-mid ">
+                        <div class="d-flex justify-content-center ">
+                            <img alt="Gain-Pain Ratio Canvas " class="feature-icon" src="/assets/images/customer.svg ">
+
+                        </div>
+                    </div>
+
+
+                    <div class="px-5 overflow-hidden align-mid ">
+                        <div class="my-3 py-3 ">
+
+                            <div class="sub-header-3 "><b>MADE-TO-ORDER</b></div>
+                            <div class="key-features-text">Build an exclusive innovation ecosystem with your required suite of features.
+                                <!-- <div class="learnmore ">
+                                                        <a class="lm-community lm-community:hover " target="_blank " href="/login ">
+                                                            Learn More</a>
+                                                    </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container d-md-flex flex-md-equal w-100 pl-md-3 ">
+
+            <div class="align-mid ">
+                <div class="container d-md-flex w-100 pl-md-3 ">
+
+                    <div class="align-mid ">
+                        <div class="d-flex justify-content-center ">
+                            <img alt="Gain-Pain Ratio Canvas " class="feature-icon" src="/assets/images/cloud.svg ">
+
+                        </div>
+                    </div>
+
+
+                    <div class="px-5 overflow-hidden align-mid ">
+                        <div class="my-3 py-3 ">
+
+                            <div class="sub-header-3 "><b>FLEXIBLE HOSTING</b></div>
+                            <div class="key-features-text">Maintain maximum data security with self-hosting and cloud-hosting options available.
+                                <!-- <div class="learnmore ">
+                                                                <a class="lm-community lm-community:hover " target="_blank " href="/login ">
+                                                                    Learn More</a>
+                                                            </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="align-mid ">
+                <div class="container d-md-flex w-100 pl-md-3 ">
+
+                    <div class="align-mid ">
+                        <div class="d-flex justify-content-center ">
+                            <img alt="Gain-Pain Ratio Canvas " class="feature-icon" src="/assets/images/checked.svg ">
+
+                        </div>
+                    </div>
+
+
+                    <div class="px-5 overflow-hidden align-mid ">
+                        <div class="my-3 py-3 ">
+
+                            <div class="sub-header-3 "><b>STABLE, RELIABLE PLATFORMS</b></div>
+                            <div class="key-features-text">Ensure minimum downtime with SSL/TLS encryption and 99.95% uptime SLA, with priority support.
+                                <!-- <div class="learnmore ">
+                                                                <a class="lm-community lm-community:hover " target="_blank " href="/login ">
+                                                                    Learn More</a>
+                                                            </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="box-3 " id="testimonial">
+        <div class="container header-3 px-3">
+            <b class="txt-green">OUR CLIENTS LOVE US</b>
+        </div>
+        <p class="section-2 px-5 container">
+            In 2018, Pitchspot was a key partner for over 25 innovation events and developed at least 8 bespoke innovation platforms for various reputable clients. Here is what they have to say about us.
+        </p>
+        <div class="container d-md-flex flex-md-equal w-100 pl-md-3 my-md-3 ">
+
+            <div class="mr-md-3 pt-3 px-3 pt-md-5 text-center overflow-hidden ">
+                <div class="my-3 py-3 ">
+                    <img src="/assets/images/anh.jpg" class="testimonial-image">
+                    <div class="sub-header-3 "><b>Chu Phuong Anh <br/> Co-President<br/> SMU Social Startup Challenge</b></div>
+                    <div class="section-3-text px-2 ">"With Pitchspot, we saved a substantial amount of time by digitizing all event processes and briefings into a one-stop, easy-to-use platform."
+                        <!-- <div class="learnmore ">
+                                    <a class="lm-community lm-community:hover " href="javascript:void(0); " (click)="scrollDown( 'one') ">
+                                        Learn More</a>
+                                </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="mr-md-3 pt-3 px-3 pt-md-5 text-center overflow-hidden">
+                <div class="my-3 py-3 ">
+                    <img src="/assets/images/stephanus.jpg" class="testimonial-image">
+                    <div class="sub-header-3 "><b>Stephanus Widjaja<br/>Founder <br/> Kinerjabisa</b></div>
+                    <div class="section-3-text px-2 ">"We could easily host over 300 attendees at the ISI 2018, with all technical aspects handled by Pitchspot."
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="mr-md-3 pt-3 px-3 pt-md-5 text-center overflow-hidden">
+                <div class="my-3 py-3 ">
+                    <img src="/assets/images/ajs.jpg" class="testimonial-image">
+                    <div class="sub-header-3 "><b>Ang Jing Shun <br/>Director<br/> NCSV Hackathon</b></div>
+                    <div class="section-3-text px-2 ">“We got a clearer overview of our event, saved tons of time and effort with Pitchspot taking care of mundane administrative duties.”
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+    <div class="box-5 ">
+        <div class="container header-6 px-3 "><b>STAY AHEAD OF THE CURVE</b></div>
+        <p class="section-6 px-5 container ">
+            Transform your approach to innovation today.
+        </p>
+        <div class="business-button py-5 ">
+            <!--todo Hardcoded part
+              <a class="white-button white-button:hover"  href="mailto:hello@pitchspot.co ">Get in Touch</a>
+            -->
+            <span class="white-button white-button:hover">Get in Touch</span>
+        </div>
+    </div>
+
+
+    <div class="arrow-up ">
+        <i class="fa fa-angle-double-up arrow-bounce " (click)="scrollUp() "></i>
+    </div>
+
+    <div class="container container-s5 footer-font">
+        <div class="d-md-flex flex-md-equal w-100 pl-md-3 ">
+            <div class="pt-3 px-3 pt-md-4 px-md-5 text-center overflow-hidden ">
+                <div class="padding ">
+                    <img src="/assets/images/lightbulb-logo.png " class="light-bulb " title="Pitchspot " (click)="scrollUp() ">
+                </div>
+            </div>
+            <div class="pt-md-4 px-md-5 text-center overflow-hidden ">
+                <div class="py-2 ">
+                    <div class="header-5 "><b>GET COFFEE WITH US</b></div>
+                    <p>
+                        <div class="section-5-text ">
+                            <a class="link link:hover " target="_blank " href="mailto:hello@pitchspot.co ">hello@pitchspot.co</a>
+                            <br>
+                            <p class="address">
+                                The Hangar at NUS Enterprise, <br/> 21 Heng Mui Keng Terrace, Singapore 119613</p>
+                        </div>
+                        <ul class="d-md-flex justify-content-start flex-md-equal cluster ">
+                            <li>
+                                <a target="_blank " href="https://www.facebook.com/pitchspot "><img src="/assets/images/facebook-grey.png " class="social-media-logo social-media-logo:hover "></a>
+                            </li>
+                            <li>
+                                <a target="_blank " href="https://instagram.com/teampitchspot/ "><img src="/assets/images/instagram-grey.png " class="social-media-logo social-media-logo:hover "></a>
+                            </li>
+                            <li>
+                                <a target="_blank " href="https://www.linkedin.com/company/pitchspot "><img src="/assets/images/linkedin-grey.png " class="social-media-logo social-media-logo:hover "></a>
+                            </li>
+                            <li>
+                                <a target="_blank " href="https://www.medium.com/pitchspot "><img src="/assets/images/medium-grey.png " class="social-media-logo social-media-logo:hover "></a>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+            <div class="pt-md-4 px-md-5 text-center overflow-hidden ">
+                <div class="py-2 ">
+                    <div class="header-5 "><b>COMPANY</b></div>
+                    <p>
+                        <div class="section-5-text ">
+                            <a class="link link:hover" target="_blank" href="/">For Innovators</a>
+                            <br>
+                            <a class="link link:hover" target="_blank" href="/enterprise">For Enterprises</a>
+                            <br>
+                            <a class="link link:hover" target="_blank" href="https://www.facebook.com/pitchspot/posts/769402283421789">Recent Updates</a>
+                            <br>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer ">© Pitchspot 2019</div>
+    </div>
+</div>

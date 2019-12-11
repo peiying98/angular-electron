@@ -1,0 +1,405 @@
+body {
+    /* background: linear-gradient(135deg, rgb(182, 207, 250) 0%, rgb(221, 219, 246) 50%, rgb(223, 220, 247) 55%, rgb(218, 217, 255) 100%); */
+    background-attachment: fixed;
+    margin: 0;
+    /* background: rgba(215, 230, 255, 1); */
+    /* background: linear-gradient(135deg, #FEAC5E 0%, #C779D0 50%, #4BC0C8 100%); */
+    /* background: linear-gradient(135deg, #0f0c29 0%, #302b63 0%, #24243e 100%); */
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    overflow: hidden !important;
+    overflow-x: hidden !important;
+}
+
+.margin {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    min-height: 80vh;
+}
+
+textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 3px dotted #11264b;
+    outline: none;
+}
+
+.new-canvas-btn {
+    margin-top: 2em;
+    color: white;
+    cursor: pointer;
+    border: 3px dashed white;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.new-canvas-btn:hover,
+.existing-canvas-btn:hover {
+    transform: scale(1.1);
+    transition-duration: 1s;
+}
+
+.existing-canvas-btn {
+    margin-top: 2em;
+    color: white;
+    cursor: pointer;
+    border: 3px solid white;
+    padding: 1em;
+}
+
+.active {
+    transform: scale(1.1);
+}
+
+.btn:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+}
+
+::-webkit-scrollbar {
+    width: 0px !important;
+    /* remove scrollbar space */
+    background: transparent;
+    /* optional: just make scrollbar invisible */
+}
+
+.activeNav {
+    background: rgba(255, 255, 255, 0.6);
+    color: black;
+    font-weight: bold;
+}
+
+.collection-box {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    padding: 1em;
+    overflow-y: scroll;
+    max-height: calc(100vh - 15em)
+}
+
+.PGA-box {
+    margin-top: 1em;
+    padding: 0 3em;
+    width: 100%;
+}
+
+.PGA-title {
+    margin: auto;
+    color: #11264b;
+    padding: 1.25em 1em;
+    border-radius: 3px;
+    margin-bottom: 1.25em;
+    box-shadow: 0 0 20px -3px rgba(0, 0, 0, .24);
+    font-weight: bold;
+    position: relative;
+    background: white;
+}
+
+.PGA-mobile-scroll {
+    width: 32%;
+    height: 70vh;
+}
+
+.PGA-inner-box {
+    max-height: 80%;
+    overflow-y: scroll;
+}
+
+.PGA-columns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pga-score {
+    height: 2em;
+    width: 2em;
+    border: 2px solid black;
+    text-align: center;
+    color: #475e9c;
+    margin: auto;
+    margin-right: 5px;
+}
+
+.pga-icon {
+    width: 10%;
+    margin: auto;
+    padding-left: 2%;
+}
+
+.metric-btn {
+    z-index: 2;
+    position: absolute;
+    right: 0;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    padding: 1.25em 1.75em;
+    background: #11264b;
+    top: 0;
+    opacity: 1;
+    border-radius: 3px;
+}
+
+.metric-box {
+    opacity: 0;
+    width: 0;
+    z-index: 1;
+    transition-duration: 1s;
+    /* height: 100vh; */
+}
+
+.metric-column {
+    border-left: 2px solid white;
+    padding: 1em;
+    position: absolute;
+    overflow: scroll;
+    background: #1c2229;
+    height: 100vh;
+    margin-top: -3em;
+}
+
+.metric-btn:hover {
+    background: #28324bb0;
+    transition-duration: 0.2s;
+}
+
+.metric-scroll {
+    /* overflow: scroll; */
+}
+
+.metrics-header {
+    background: white;
+    margin: auto;
+    margin-top: 1em;
+    padding: 1em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.fa {
+    margin: auto;
+}
+
+.smallfont {
+    font-size: 0.8em;
+}
+
+.make-pointer {
+    cursor: pointer;
+}
+
+.collapsible {
+    display: none;
+}
+
+.collapsible-tick-cross {
+    display: none;
+    margin: auto;
+}
+
+.warning-error {
+    color: red;
+}
+
+.form {
+    display: flex;
+    width: 100%;
+}
+
+.add-new {
+    flex-direction: column;
+    cursor: pointer
+}
+
+.content-box {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    width: 60%;
+    overflow-wrap: break-word;
+    margin: auto;
+}
+
+.content-spacing {
+    margin-bottom: 1em;
+}
+
+.pgr-box {
+    padding: 16px 32px;
+    margin-bottom: 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .8);
+    -webkit-box-shadow: 0px 16px 25px 0px rgba(118, 88, 198, 0.1);
+    -moz-box-shadow: 0px 16px 25px 0px rgba(118, 88, 198, 0.1);
+    box-shadow: 0px 16px 25px 0px rgba(118, 88, 198, 0.1);
+}
+
+.pgr-box-2 {
+    background: white;
+    border: 1px solid #28324b59;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 16px;
+    display: flex;
+    /* background: rgba(255, 255, 255, .8); */
+    /* -webkit-box-shadow: 0px 16px 25px 0px #11264b17;
+    -moz-box-shadow: 0px 16px 25px 0px #11264b17;*/
+    box-shadow: 0 0 20px -3px rgba(0, 0, 0, .24);
+    justify-content: space-between;
+}
+
+.pgr-mobile-title-text {
+    font-weight: bold;
+    color: #11264b;
+    font-size: 0.9em;
+    margin: 0.5em 0;
+}
+
+.pgr-mobile-pad-left {
+    padding-left: 0;
+}
+
+.pgr-mobile-pad-right {
+    padding-right: 0;
+}
+
+.edit-icon {
+    width: 10%;
+    cursor: pointer;
+    margin: auto;
+}
+
+.delete-icon {
+    width: 10%;
+    cursor: pointer;
+    margin: auto;
+    margin-left: 0.25em;
+}
+
+.delete-options {
+    display: flex;
+}
+
+.delete-tick-icon {
+    color: #16a085;
+    cursor: pointer
+}
+
+.delete-cross-icon {
+    color: #c0392b;
+    cursor: pointer;
+    margin-left: 0.25em;
+}
+
+.close-metrics-icon {
+    color: white;
+    cursor: pointer
+}
+
+#mobileMetricCol {
+    display: none;
+}
+
+@media(max-width:800px) {
+     ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 7px;
+    }
+     ::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: #11264b;
+        -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+    }
+     ::-webkit-scrollbar-track {
+        background: #ffffff;
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+    #mobileMetricCol {
+        width: 100vw;
+        left: 0;
+    }
+    .PGA-box {
+        margin-left: 0em;
+        margin-top: 3em;
+        font-size: 1.25em;
+        padding: 0;
+    }
+    .PGA-columns {
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        overflow-y: hidden;
+        width: 100%;
+    }
+    .PGA-title {
+        position: initial;
+        margin-left: 3em;
+        margin-right: 3em;
+    }
+    .PGA-mobile-scroll {
+        width: 100vh;
+        height: 60%;
+        padding-left: 2em;
+    }
+    .PGA-mobile-card {
+        width: 40vh;
+        margin-bottom: 1em;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+    .PGA-inner-box {
+        padding: 1em;
+        max-height: calc(100vh - 15em);
+        overflow-y: scroll;
+        width: 40vh;
+        height: calc(80% - 3em);
+        box-shadow: none;
+    }
+    .metric-box {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        display: none;
+        height: 80vh;
+    }
+    .metric-box>div {
+        background: #283240 !important;
+        border: none !important;
+        display: none;
+    }
+    .metric-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 98;
+        opacity: 1;
+        color: #28324b;
+        background: #ffffff;
+        padding-bottom: 26.85px;
+        border-radius: 0;
+    }
+    .metric-btn:hover {
+        background: #f7f7f7;
+    }
+    #mydiv {
+        display: contents;
+    }
+    .pgr-box-title {
+        padding: 0 1em;
+    }
+    .pgr-mobile-title-text {
+        text-align: center;
+        padding-top: 0.5em;
+        font-size: 1em;
+    }
+    .pgr-mobile-pad-left {
+        padding-left: 3em;
+    }
+    .pgr-mobile-pad-right {
+        padding-right: 3em;
+    }
+    .metric-scroll {
+        padding-bottom: 50px;
+    }
+}
+
+
+/* teen fong */

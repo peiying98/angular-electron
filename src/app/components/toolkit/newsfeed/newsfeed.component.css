@@ -1,0 +1,370 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+.fa {
+    margin-right: 1px;
+}
+
+.navigate {
+    padding: 1em;
+}
+
+.navigate:hover {
+    transition-duration: 1s;
+    transform: scale(1.1)
+}
+
+.page {
+    margin-bottom: 1em;
+}
+
+.section-header {
+    padding: 0.25em 0.25em 0.25em 0.6em;
+}
+
+.keyword-update-column {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    overflow-y: hidden;
+    margin-bottom: 3%;
+}
+
+.keywords-holder {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    margin-top: 1em;
+}
+
+.keyword-tag {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    height: 30px;
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 2px;
+    overflow: scroll;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    color: #11264b;
+    border-color: #11264b;
+    padding: 5px 7px;
+    overflow: hidden;
+}
+
+.keyword-box {
+    background: #ffffff;
+    padding: 1.5em; 
+    box-shadow: 0 0 20px -3px rgba(0,0,0,.24);
+    border: 1px solid #28324b59;
+    border-radius: 3px
+}
+
+.keyword-box-2 {
+    display: flex; 
+    margin-bottom: 1em;
+}
+
+.keyword-text {
+    padding-right: 10px;
+}
+
+.keyword-blank-prompt {
+    background: white; 
+    padding: 2em;
+    padding-bottom: 1em; 
+    text-align: center;
+}
+
+.newsfeed-column {
+    flex: 0 0 66.666666%;
+    max-width: 66.666666%;
+    padding-right: 3em;
+    margin-bottom: 3%;
+    /* overflow-y: scroll; */
+}
+
+.newsfeed-view {
+    overflow-y: scroll;
+    max-height: 90%;
+    padding: 1em 1em 0;
+}
+
+.newsfeed-mobile-resp {
+    position: relative;
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.newsfeed-blank-prompt {
+    background: white; 
+    padding: 2em; 
+    box-shadow: 0 0 20px -3px rgba(0,0,0,.24);
+    text-align: center;
+    border: 1px solid #28324b59;
+    border-radius: 3px;
+}
+
+.newsfeed-image-box {
+    top:0; 
+    left:0; 
+    padding: 2em 0.5em 0; 
+    text-align:center; 
+    width:12em; 
+    /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
+}
+
+.newsfeed-image {
+    width:72px;
+    height: auto;
+}
+
+.newsfeed-entry-keyword {
+    color: #11264b; 
+    padding:1em;
+    padding-top: 2em; 
+}
+
+.newsfeed-content-box {
+    position: relative; 
+    width:100%;
+}
+
+.newsfeed-content-title {
+    padding:1em; 
+    font-size: 1.2em;
+}
+
+.newsfeed-content-source {
+    top:0; 
+    left:0; 
+    color: #11264b; 
+    padding:0 1.2em;
+}
+
+.newsfeed-content-body {
+    padding:1.2em; transition-duration: 1s;
+    text-align:left;  
+    height: auto;
+}
+
+.del-cross {
+    display: flex;
+    cursor: pointer;
+    padding: 3px 0 0 0;
+}
+
+#maxinput {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 3px dotted #11264b;
+}
+
+#maxkeyword {
+    padding: 1em;
+    width: 7em;
+    height: auto;
+    border: 2px solid #11264b;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 0.5em;
+    border-radius: 3px;
+}
+
+#verifybtn {
+    margin-left: auto;
+    padding: 1em;
+    width: 12em;
+    height: auto;
+    border: 3px solid #11264b;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 0.5em;
+}
+
+/* loader */
+
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+}
+
+.lds-ripple div {
+    position: absolute;
+    border: 4px solid #11264b;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+.loading {
+    position: relative; 
+    top: 60%; 
+    left: 45%; 
+    z-index: 99
+}
+
+@keyframes lds-ripple {
+    0% {
+        top: 28px;
+        left: 28px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: -1px;
+        left: -1px;
+        width: 58px;
+        height: 58px;
+        opacity: 0;
+    }
+}
+
+#listDiv {
+    background: #ffffff;
+    margin-bottom: 1em;
+    box-shadow: 0 0 20px -3px rgba(0,0,0,.24);
+    position: relative;
+    display: flex;
+    border: 1px solid #28324b59;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#listDiv:hover {
+    background: #f7f7f7;
+    transition-duration: 0.2s;
+}
+
+.updates-holder {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.update-box {
+    margin-top: 2em;
+    opacity: 20%;
+}
+
+.update-box-2 {
+    cursor: pointer;
+    display: flex;
+    width: -webkit-fill-available;
+}
+
+.update-box-3 {
+    position: relative; 
+    width:100%;
+}
+
+.update-title {
+    padding: 1em;
+    font-size: 1.2em;
+}
+
+.update-body {
+    top: 0; 
+    left: 0; 
+    color: #11264b; 
+    padding: 0 1.2em; 
+    text-align: justify;
+}
+
+.update-footer {
+    padding: 1.2em; 
+    transition-duration: 1s; 
+    text-align:left; 
+    height: auto;
+}
+
+.update-view {
+    background: #f1f6f8;
+    padding: 1em;
+    max-height: 70%;
+    overflow-y: scroll;
+}
+
+.mobile-view {
+    display: none;
+}
+
+@media(max-width:750px) {
+    #listDiv {
+        width: 100%;
+        display: block;
+        box-shadow: 0 0 20px -3px rgba(0,0,0,.24);
+        display: flex;
+    }
+
+    .keyword-update-column {
+        display: flex;
+        flex-direction: column-reverse;
+        max-width: 100%;
+        margin: -1em 0 1em;
+    }
+   
+    .keyword-container {
+        margin-top: 1em;
+    }
+    
+    .keyword-box {
+        margin: 12px;
+    }
+
+    .update-title {
+        padding: 1em;
+        font-size: 1.3em;
+        width: 25em;
+    }
+    
+    .update-box {
+        cursor: pointer;
+        margin-right: 1em;
+        margin-top: 1em;
+    }
+    
+    .updates-holder {
+        display: flex;
+        position: relative;
+        width: fit-content;
+        font-size: 0.8em;
+        flex-wrap: nowrap;
+    }
+    
+    .update-view {
+        padding: 0em 1em;
+        max-height: 10%;
+        overflow-y: hidden;
+    }
+
+    .newsfeed-mobile-resp {
+        width: auto;
+        height: -webkit-fill-available;
+        display: flex;
+        overflow-y: scroll;
+        flex-direction: column;
+        -webkit-overflow-scrolling: touch;
+        padding: 1%;
+    }
+    
+    .newsfeed-column {
+        flex: auto;
+        max-width: 100%;
+        padding-right: 0em;
+        overflow-y: unset;
+    }
+}
